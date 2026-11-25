@@ -1,0 +1,776 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#191c20"><meta name="application-name" content="Desenho Técnico Pro"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="/manifest.json"><link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png"><link rel="apple-touch-icon" href="/icon-192.png"><title>Desenho Técnico Pro</title><style>*{box-sizing:border-box}body{margin:auto;max-width:950px;background:#191c20;color:#eee;font:16px system-ui;padding:16px}h1{color:#ff9838;font-size:25px}h2{font-size:19px}section{min-width:0;background:#272c32;padding:14px;border-radius:12px;margin:12px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(125px,100%),1fr));gap:8px}button,input,select{font:inherit;border:1px solid #59616a;border-radius:7px;padding:10px;background:#171a1e;color:white;max-width:100%}button{cursor:pointer}button.active,.primary{background:#ff9838;color:#161616;border-color:#ff9838;font-weight:bold}label{display:block;font-size:13px;color:#cbd0d6}input,select{width:100%;margin-top:4px}button svg{display:block;width:100%;height:54px}#paper{background:white;color:#111;padding:12px}#paper svg{width:100%;height:auto;display:block}small{color:#aeb7c0}#error{color:#ffae82}table{width:100%;border-collapse:collapse}td,th{padding:5px;border-bottom:1px solid #aaa;text-align:left}@media print{body{background:white;color:black;padding:0}body>*:not(#paper){display:none!important}#paper{margin:0;padding:0} @page{size:A4;margin:12mm}}summary{padding:14px;background:#272c32;border-radius:9px;cursor:pointer;margin:8px 0} .measure{cursor:pointer;fill:#a64c00;font-weight:bold;paint-order:stroke;stroke:white;stroke-width:5px;stroke-linejoin:round} .measure:focus{fill:#111} #quick svg{width:100%;height:auto;background:white;border-radius:8px} input[type=number]{font-size:18px;min-height:48px} dialog{background:#272c32;color:white;border:1px solid #ff9838;border-radius:12px;width:min(90%,360px)} dialog::backdrop{background:#0009} @media print{dialog{display:none!important}}#paper h2{margin:0 0 6px}#paper h3{font-size:15px;margin:8px 0 2px}#paper p{margin:5px 0} .views{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}.views>div{min-width:0} .sheethead{border-bottom:1px solid #222;padding-bottom:8px} @media(max-width:480px){.views{grid-template-columns:1fr}} @media print{#paper{border-radius:0;font:10pt Arial,sans-serif}#paper h2{font-size:15pt}#paper h3{font-size:11pt}#paper .views{grid-template-columns:1fr 1fr;gap:5mm}#paper .views svg{max-height:58mm}#paper .cutview svg{max-height:95mm}#paper table{font-size:9pt}#paper td{padding:3px;border-color:#ccc}#paper tr,#paper .views,#paper .cutview{break-inside:avoid}#paper svg{overflow:visible}} @media screen{#paper .print-page{background:white;color:#111;margin:12px 0;padding:12px;border:1px solid #aaa;border-radius:5px}#previewSheet .print-page{padding:12px;margin-bottom:18px;border:1px solid #ccc}}@media print{#paper .print-page{break-after:page;page-break-after:always;min-height:0}#paper .print-page:last-child{break-after:auto;page-break-after:auto}#paper .print-page *{max-width:100%}#paper .cutview svg{max-height:145mm}#paper .views svg{max-height:100mm}#paper .technical-page{font-size:10pt}#paper .technical-page table{font-size:10pt}}.dim-ref{font-size:11px;font-weight:700;fill:#1c5180}.dim-note{padding:7px 9px;border:1px solid #777;font-size:12px;margin:6px 0}#paper{font-family:Arial,system-ui,sans-serif}#paper .sheethead{border-bottom:1px solid #cdd2d8;padding:0 0 5px;margin-bottom:5px}#paper .sheethead h2{font-size:14px;font-weight:600;color:#202832}#paper .sheethead p{font-size:10px;color:#65707b}#paper h3{font-size:11px;font-weight:600;color:#59636d;margin:5px 0 3px}#paper .dim-note{border:0;border-left:2px solid #cbd3dc;padding:3px 7px;font-size:10px;color:#65707b;margin:3px 0}#paper .dim-note p{display:none}#paper .finished-view h3{font-size:11px}#paper .finished-view>p{font-size:9px!important;color:#66707a}#paper .finished-view svg{max-height:105mm;object-fit:contain}#paper .finished-view>div{font-size:10px}#paper .finished-view>div>div{padding:2px 3px!important}#paper .views{gap:8px}#paper .views>div{border-top:1px solid #e4e7eb;padding-top:4px}#paper .views svg{max-height:72mm}#paper .cutview{border-top:1px solid #e4e7eb;padding-top:5px}#paper .cutview svg{max-height:95mm}#paper .drawing-page>p{font-size:10px;color:#65707b}#paper .technical-page h3{font-size:12px}#paper .technical-page td,#paper .technical-page th{padding:4px 5px;font-size:10px;color:#39434d;border-bottom:1px solid #e3e6e9}#paper .technical-page p{font-size:10px;color:#66707a}@media print{#paper .drawing-page{height:270mm;overflow:hidden}#paper .finished-view svg{max-height:95mm}#paper .views svg{max-height:58mm}#paper .cutview svg{max-height:70mm}#paper .print-page{padding:0}#paper .technical-page table{font-size:9pt}} #legs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:12px;margin:14px 0}.leg-card{background:#1c2126;border:1px solid #49535d;border-radius:12px;padding:12px;min-width:0}.leg-card-title{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #3d4650;padding-bottom:9px;margin-bottom:11px}.leg-card-title strong{font-size:15px;color:#f0f4f8}.leg-card-title span{font-size:11px;color:#aeb8c2;text-align:right}.leg-card-main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin-bottom:10px}.leg-card-main label{font-size:13px;color:#eef2f6;font-weight:600}.leg-card-main input{margin-top:5px;background:#2b333b;border:1px solid #647383;font-size:19px;font-weight:600}.leg-card-angle input{border-color:#bd8552}.leg-card-options{display:grid;grid-template-columns:1fr;gap:10px}.leg-card-options label{font-size:11px;color:#b7c1cb}.leg-card-options select{font-size:13px;padding:9px 6px;min-height:43px;background:#252c33}@media(max-width:390px){#legs{grid-template-columns:1fr}.leg-card{padding:10px}.leg-card-main{gap:8px}.leg-card-options{gap:7px}}#paper .bend-key{display:flex;flex-wrap:wrap;gap:5px 12px;font-size:10px;color:#53616b;margin:4px 0 2px}#paper .bend-key span{white-space:nowrap}#paper .bend-key b{display:inline-flex;width:16px;height:16px;align-items:center;justify-content:center;border:1px solid #87919b;border-radius:50%;font-size:9px;margin-right:3px}#paper .cutview{min-width:0}#paper .print-page{overflow-wrap:anywhere}#paper .cutview>p{font-size:10px!important;font-weight:400;color:#65707b}#paper .views p{font-size:9px;color:#65707b}@media(max-width:480px){#paper .print-page{padding:8px}#paper .cutview svg{max-height:85mm}#paper .views svg{max-height:72mm}}@media print{#paper .bend-key{font-size:8pt}#paper .drawing-page{height:auto;overflow:visible}#paper .cutview svg{max-height:65mm}} @media print{
+@page{size:A4 portrait;margin:10mm}
+html,body{width:190mm!important;margin:0!important;padding:0!important}
+#paper{width:190mm!important;margin:0!important;padding:0!important}
+#paper .print-page{box-sizing:border-box!important;width:190mm!important;max-width:190mm!important;height:275mm!important;min-height:0!important;max-height:275mm!important;overflow:hidden!important;break-inside:avoid!important;page-break-inside:avoid!important;break-after:page!important;page-break-after:always!important;margin:0!important;padding:0!important}
+#paper .print-page:last-child{break-after:auto!important;page-break-after:auto!important}
+#paper .drawing-page{font-size:8pt!important}
+#paper .drawing-page h3{font-size:9pt!important;margin:3px 0 1px!important}
+#paper .drawing-page p{font-size:8pt!important;margin:2px 0!important}
+#paper .drawing-page .sheethead{padding-bottom:2px!important;margin-bottom:3px!important}
+#paper .drawing-page .finished-full svg{max-height:70mm!important;width:100%!important}
+#paper .drawing-page .finished-full{max-height:85mm!important;overflow:hidden!important}
+#paper .drawing-page .views{display:grid!important;grid-template-columns:1fr 1fr!important;gap:3mm!important;margin:2mm 0!important}
+#paper .drawing-page .views svg{max-height:50mm!important;width:100%!important}
+#paper .drawing-page .views>div{overflow:hidden!important}
+#paper .drawing-page .cutview{margin-top:2mm!important;padding-top:2mm!important}
+#paper .drawing-page .cutview svg{max-height:75mm!important;width:100%!important}
+#paper .drawing-page .bend-key{font-size:7pt!important;gap:2px 6px!important}
+#paper .drawing-page .bend-key span{white-space:nowrap!important}
+#paper .technical-page{font-size:9pt!important}
+#paper .technical-page h3{font-size:10pt!important}
+#paper .technical-page p{font-size:8.5pt!important;line-height:1.25!important;margin:4px 0!important}
+#paper .technical-page table{font-size:8.5pt!important}
+#paper .technical-page td,#paper .technical-page th{padding:3px 4px!important;line-height:1.2!important}
+}input:focus,.measure-focus{border-color:#2289f2!important;outline:2px solid #2289f2!important;outline-offset:1px;background:#e8f3ff!important;color:#0c3d70!important}#holeMap svg{overflow:visible}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;position:static;background:#191c20;padding:8px 0}.steps a{text-align:center;color:#fff;text-decoration:none;background:#35404b;border:1px solid #637180;border-radius:8px;padding:10px 3px;font-size:12px;font-weight:650}#modelPanel,#fields,#holesPanel,#paper{scroll-margin-top:68px}#models{grid-template-columns:repeat(auto-fit,minmax(min(110px,100%),1fr))}#models button{font-size:12px;min-height:93px}#holesPanel{border:1px solid #536574}#holesPanel>button{margin:4px 3px 4px 0}#holesPanel .grid{gap:10px}#holesPanel label{font-size:13px}#holesPanel select{font-size:15px}#holesPanel #holeStatus:empty{display:none}#holeList>div{border-bottom:1px solid #52606e;padding:7px 0}.outputTitle{color:#ff9838;margin:18px 0 3px}@media(max-width:440px){body{padding:9px}section{padding:11px}.steps a{font-size:11px;padding:10px 2px}}@media print{.steps,.outputTitle{display:none!important}}
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style></head><body><style>
+/* Layout A4 único: desenho maior, ficha técnica compacta embaixo */
+#paper .single-sheet{background:#fff;color:#111;display:flex;flex-direction:column;gap:7px;box-sizing:border-box}
+#paper .single-sheet .sheethead{flex:none}
+#paper .single-sheet .print-drawing{flex:1 1 auto;min-height:0;display:flex;flex-direction:column}
+#paper .single-sheet .print-drawing>.views{flex:1 1 auto;min-height:0;align-items:start}
+#paper .single-sheet .print-drawing svg{width:100%;height:auto;max-height:100%;object-fit:contain}
+#paper .single-sheet .print-specs{flex:0 0 auto;border-top:2px solid #222;padding-top:5px}
+#paper .single-sheet .specs-title{display:flex;justify-content:space-between;align-items:center;font-size:11px;gap:8px}
+#paper .single-sheet .specs-title span{font-size:9px;color:#555}
+#paper .single-sheet .specs-meta{display:flex;gap:18px;font-size:9px;margin:3px 0}
+#paper .single-sheet .print-specs table{font-size:9px;width:100%;border-collapse:collapse}
+#paper .single-sheet .print-specs td,#paper .single-sheet .print-specs th{padding:2px 4px;border-bottom:1px solid #d9dde2;line-height:1.12}
+#paper .single-sheet .print-note{font-size:8px;margin:4px 0 0}
+#paper .single-sheet .qty-stamp{border:3px solid #111;padding:6px 14px;min-width:115px;text-align:center}
+#paper .single-sheet .qty-stamp strong{font-size:24px;white-space:nowrap}
+@media print{
+ @page{size:A4 portrait;margin:9mm}
+ #paper .single-sheet{width:192mm!important;max-width:192mm!important;height:278mm!important;max-height:278mm!important;min-height:278mm!important;overflow:hidden!important;margin:0!important;padding:0!important;break-after:auto!important;page-break-after:auto!important}
+ #paper .single-sheet .print-drawing{max-height:185mm!important;overflow:hidden!important}
+ #paper .single-sheet .print-drawing .views svg{max-height:135mm!important}
+ #paper .single-sheet .print-drawing .cutview svg{max-height:100mm!important}
+ #paper .single-sheet .print-drawing .finished-full svg{max-height:95mm!important}
+ #paper .single-sheet .print-specs{max-height:85mm!important;overflow:hidden!important}
+ #paper .single-sheet .qty-stamp strong{font-size:22pt!important}
+}
+
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style><style>
+/* V5.5: áreas reservadas; legendas nunca ocupam a mesma área das vistas. */
+#paper .single-sheet .print-drawing{display:block;min-height:0;flex:1 1 auto}
+#paper .single-sheet .finished-full{min-height:0;overflow:visible}
+#paper .single-sheet .finished-view>div{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:1px 10px!important}
+#paper .single-sheet .finished-view>div>div{font-size:10px!important;padding:2px!important;line-height:1.2!important}
+#paper .single-sheet .finished-view svg{display:block;max-width:100%;height:auto}
+#paper .single-sheet .color-key{font-size:10px!important;margin:2px 0 0!important}
+#paper .single-sheet .profile-views{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+#paper .single-sheet .profile-views>div{min-width:0;overflow:hidden}
+#paper .single-sheet .profile-views svg{width:100%;height:auto;object-fit:contain}
+#paper .single-sheet .cutview{border-top:1px solid #d4dbe2;margin-top:0;padding-top:3px}
+#paper .single-sheet .views{align-items:start}
+#paper .single-sheet .views>div{min-width:0}
+#paper .single-sheet .print-specs{position:relative;background:#fff}
+#paper .single-sheet .qty-stamp{min-width:105px;padding:4px 9px}
+#paper .single-sheet .qty-stamp strong{font-size:20px}
+@media print{
+ #paper .single-sheet .print-drawing{max-height:none!important;overflow:visible!important}
+ #paper .single-sheet .finished-full{max-height:none!important;overflow:visible!important}
+ #paper .single-sheet .finished-view svg{max-height:82mm!important}
+ #paper .single-sheet .finished-view>div>div{font-size:8pt!important;line-height:1.1!important}
+ #paper .single-sheet .profile-views{grid-template-columns:1fr 1fr!important;gap:5mm!important}
+ #paper .single-sheet .profile-views svg{max-height:58mm!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:58mm!important}
+ #paper .single-sheet .print-specs{max-height:none!important;overflow:visible!important}
+ #paper .single-sheet .print-specs td{font-size:8pt!important}
+ #paper .single-sheet .qty-stamp strong{font-size:18pt!important}
+}
+
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style><style>
+/* v5.6 — vistas equilibradas e comprimento legível na folha A4 */
+#paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px!important;align-items:stretch!important}
+#paper .single-sheet .profile-views>div{min-width:0!important;display:flex;flex-direction:column;justify-content:flex-start;overflow:visible!important}
+#paper .single-sheet .profile-views svg{width:100%!important;height:170px!important;max-height:170px!important;object-fit:contain!important;display:block}
+#paper .single-sheet .profile-views h3{margin:3px 0 5px!important;min-height:18px}
+#paper .single-sheet .length-dimension{display:flex;align-items:center;justify-content:center;gap:8px;margin:4px 0 0;padding:4px 6px;border:1px solid #b8c4cf;border-radius:4px;white-space:nowrap;color:#173f64;font-size:11px}
+#paper .single-sheet .length-dimension strong{font-size:14px;color:#111}
+#paper .single-sheet .length-dimension span{font-size:9px;font-weight:700;letter-spacing:.3px}
+@media print{
+ #paper .single-sheet .profile-views{gap:4mm!important}
+ #paper .single-sheet .profile-views svg{height:51mm!important;max-height:51mm!important}
+ #paper .single-sheet .length-dimension{margin-top:1mm!important;padding:1mm 2mm!important;break-inside:avoid!important}
+ #paper .single-sheet .length-dimension strong{font-size:12pt!important}
+}
+
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style><style>
+/* v5.8: chapa aberta em destaque, comprimento cotado abaixo e isométrica sem cota */
+#paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)!important;gap:12px!important}
+#paper .single-sheet .profile-views .cutview>svg{height:195px!important;max-height:195px!important;width:100%!important}
+#paper .single-sheet .profile-views .iso-print-view>svg{height:160px!important;max-height:160px!important;width:100%!important}
+#paper .single-sheet .expanded-length{margin:1px 0 5px;display:flex;flex-direction:column;align-items:center;gap:0}
+#paper .single-sheet .expanded-length svg{height:38px!important;max-height:38px!important;width:100%!important;display:block}
+#paper .single-sheet .expanded-length span{font-size:9px;color:#1769aa;font-weight:bold;letter-spacing:.4px}
+@media print{
+ #paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)!important;gap:4mm!important}
+ #paper .single-sheet .profile-views .cutview>svg{height:60mm!important;max-height:60mm!important}
+ #paper .single-sheet .profile-views .iso-print-view>svg{height:47mm!important;max-height:47mm!important}
+ #paper .single-sheet .expanded-length svg{height:10mm!important;max-height:10mm!important}
+ #paper .single-sheet .expanded-length span{font-size:7pt!important}
+}
+
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style><style>
+/* v6.0 — três vistas com caixas de desenho de dimensões equivalentes. */
+#paper .single-sheet .finished-full{width:calc(50% - 6px)!important;max-width:calc(50% - 6px)!important;margin:0 auto 8px!important;min-height:0!important;overflow:visible!important}
+#paper .single-sheet .finished-full svg{display:block!important;width:100%!important;height:172px!important;max-height:172px!important;object-fit:contain!important;overflow:visible!important}
+#paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:12px!important;align-items:start!important}
+#paper .single-sheet .profile-views>div{min-width:0!important;overflow:visible!important}
+#paper .single-sheet .profile-views .cutview>svg,#paper .single-sheet .profile-views .iso-print-view>svg{display:block!important;width:100%!important;height:172px!important;max-height:172px!important;object-fit:contain!important;overflow:visible!important}
+#paper .single-sheet .profile-views h3{margin:3px 0 5px!important}
+@media print{
+ #paper .single-sheet .finished-full{width:calc(50% - 2mm)!important;max-width:calc(50% - 2mm)!important;margin:0 auto 2mm!important}
+ #paper .single-sheet .finished-full svg{height:52mm!important;max-height:52mm!important}
+ #paper .single-sheet .profile-views{gap:4mm!important}
+ #paper .single-sheet .profile-views .cutview>svg,#paper .single-sheet .profile-views .iso-print-view>svg{height:52mm!important;max-height:52mm!important}
+}
+
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style><style>
+/* 6.1: evitar que a legenda das cotas seja comprimida em colunas estreitas. */
+#paper .single-sheet .finished-full{width:100%!important;max-width:100%!important;margin:0 0 8px!important;}
+#paper .single-sheet .finished-view{width:100%!important;min-width:0!important;}
+#paper .single-sheet .finished-view>div{grid-template-columns:repeat(2,minmax(0,1fr))!important;column-gap:16px!important;}
+#paper .single-sheet .finished-view>div>div{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;min-width:0!important;gap:5px!important;overflow:visible!important;overflow-wrap:normal!important;word-break:normal!important;white-space:nowrap!important;font-size:10px!important;line-height:1.35!important;}
+#paper .single-sheet .finished-view>div>div span{white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;min-width:0!important;}
+#paper .single-sheet .finished-view>div>div span:last-child{margin-left:auto!important;font-size:9px!important;}
+#paper .single-sheet .finished-full svg{height:215px!important;max-height:215px!important;}
+#paper .single-sheet .profile-views .cutview>svg,#paper .single-sheet .profile-views .iso-print-view>svg{height:195px!important;max-height:195px!important;}
+@media print{
+ #paper .single-sheet .finished-full{width:100%!important;max-width:100%!important;margin:0 0 2mm!important;}
+ #paper .single-sheet .finished-view>div>div{font-size:8pt!important;padding:2px 1px!important;}
+ #paper .single-sheet .finished-view>div>div span:last-child{font-size:7pt!important;}
+ #paper .single-sheet .finished-full svg{height:58mm!important;max-height:58mm!important;}
+ #paper .single-sheet .profile-views .cutview>svg,#paper .single-sheet .profile-views .iso-print-view>svg{height:50mm!important;max-height:50mm!important;}
+}
+
+/* Versão 6.2 — proporções de impressão e legibilidade */
+#paper .profile-views{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start;gap:10px}
+#paper .profile-views .cutview svg{width:100%;height:auto;max-height:110mm;object-fit:contain}
+#paper .profile-views .iso-print-view svg{width:100%;height:auto;max-height:90mm;object-fit:contain}
+#paper .profile-views .cutview{overflow:visible}
+#paper .profile-views .iso-print-view{overflow:visible}
+@media print{
+ #paper .single-sheet .profile-views{display:grid!important;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)!important;gap:4mm!important;align-items:start!important}
+ #paper .single-sheet .profile-views .cutview svg{max-height:82mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views .iso-print-view svg{max-height:75mm!important;width:100%!important;object-fit:contain!important}
+ #paper .single-sheet .profile-views>div{overflow:visible!important}
+ #paper .single-sheet .profile-views .bend-key{flex-wrap:wrap!important}
+}
+</style><style>
+/* v6.4: mais área útil para as três vistas, sem deformar as cotas. */
+#paper .single-sheet .finished-full svg{height:270px!important;max-height:270px!important}
+#paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.13fr) minmax(0,1fr)!important;gap:10px!important}
+#paper .single-sheet .profile-views .cutview>svg{height:260px!important;max-height:260px!important}
+#paper .single-sheet .profile-views .iso-print-view>svg{height:250px!important;max-height:250px!important}
+#paper .single-sheet .profile-views .iso-print-view>.iso-length-cota{width:100%;margin-top:0!important}
+#paper .single-sheet .profile-views .iso-print-view>.iso-length-cota>svg{height:54px!important;max-height:54px!important;width:100%!important}
+@media print{
+ #paper .single-sheet .finished-full svg{height:66mm!important;max-height:66mm!important}
+ #paper .single-sheet .profile-views .cutview>svg{height:67mm!important;max-height:67mm!important}
+ #paper .single-sheet .profile-views .iso-print-view>svg{height:61mm!important;max-height:61mm!important}
+ #paper .single-sheet .profile-views .iso-print-view>.iso-length-cota>svg{height:13mm!important;max-height:13mm!important}
+ #paper .single-sheet .profile-views{gap:3mm!important}
+ #paper .single-sheet .finished-full{margin-bottom:1mm!important}
+}
+</style><style>
+/* 6.5: folha única, vistas grandes e ficha técnica compacta */
+#paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr)!important;gap:9px!important}
+#paper .single-sheet .profile-views .cutview>svg{height:335px!important;max-height:335px!important}
+#paper .single-sheet .profile-views .iso-print-view>svg{height:300px!important;max-height:300px!important}
+#paper .single-sheet .finished-full svg{height:320px!important;max-height:320px!important}
+#paper .single-sheet .iso-length-cota{margin:0!important;padding:0!important}
+#paper .single-sheet .iso-length-cota>svg{height:62px!important;max-height:62px!important}
+#paper .single-sheet .print-specs td,#paper .single-sheet .print-specs th{font-size:9px!important;padding:1px 3px!important;line-height:1.07!important}
+#paper .single-sheet .print-specs .specs-meta{font-size:8px!important;margin:1px 0!important}
+#paper .single-sheet .print-specs .print-note{font-size:7px!important;margin:2px 0!important}
+@media print{
+ @page{size:A4 portrait;margin:8mm}
+ html,body,#paper{width:194mm!important}
+ #paper .single-sheet{width:194mm!important;max-width:194mm!important;height:280mm!important;max-height:280mm!important;gap:3px!important}
+ #paper .single-sheet .finished-full svg{height:74mm!important;max-height:74mm!important}
+ #paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr)!important;gap:3mm!important}
+ #paper .single-sheet .profile-views .cutview>svg{height:74mm!important;max-height:74mm!important}
+ #paper .single-sheet .profile-views .iso-print-view>svg{height:75mm!important;max-height:75mm!important}
+ #paper .single-sheet .profile-views .iso-print-view>.iso-length-cota>svg{height:16mm!important;max-height:16mm!important}
+ #paper .single-sheet .print-specs{max-height:63mm!important;overflow:hidden!important;padding-top:2px!important}
+ #paper .single-sheet .print-specs td,#paper .single-sheet .print-specs th{font-size:7pt!important;padding:1px 2px!important;line-height:1.03!important}
+ #paper .single-sheet .print-specs .specs-meta{font-size:7pt!important}
+ #paper .single-sheet .print-specs .print-note{font-size:6pt!important}
+ #paper .single-sheet .finished-view>div>div{font-size:7.5pt!important;padding:1px!important}
+ #paper .single-sheet .finished-view>div>div span:last-child{font-size:6.5pt!important}
+ #paper .single-sheet .bend-key{font-size:7pt!important;margin:0!important}
+ #paper .single-sheet .print-drawing{flex:1 1 auto!important}
+}
+</style><style>
+/* 6.7 — A4: áreas reais para as vistas; evita SVG encolhido por espaços internos. */
+#paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.12fr) minmax(0,1fr)!important;gap:8px!important}
+#paper .single-sheet .profile-views .iso-print-view>svg{object-fit:contain!important;object-position:center top!important}
+#paper .single-sheet .profile-views .cutview>svg{object-fit:contain!important;object-position:center top!important}
+#paper .single-sheet .iso-length-cota{display:none!important}
+#paper .single-sheet .finished-view>div{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+#paper .single-sheet .finished-view>div>div{white-space:normal!important;overflow-wrap:normal!important}
+@media print{
+ @page{size:A4 portrait;margin:8mm}
+ #paper .single-sheet{height:280mm!important;max-height:280mm!important;gap:2px!important}
+ #paper .single-sheet .finished-full svg{height:77mm!important;max-height:77mm!important}
+ #paper .single-sheet .profile-views .cutview>svg{height:91mm!important;max-height:91mm!important}
+ #paper .single-sheet .profile-views .iso-print-view>svg{height:91mm!important;max-height:91mm!important}
+ #paper .single-sheet .print-specs{max-height:56mm!important;overflow:hidden!important}
+ #paper .single-sheet .print-specs td,#paper .single-sheet .print-specs th{font-size:6.5pt!important;padding:1px 2px!important;line-height:1!important}
+ #paper .single-sheet .print-specs .specs-meta{font-size:6.5pt!important}
+ #paper .single-sheet .finished-view>div>div{font-size:7pt!important;padding:1px!important}
+ #paper .single-sheet .finished-view>div>div span:last-child{font-size:6pt!important}
+}
+</style><style>
+/* v6.8: crop the developed-sheet SVG to its actual contents; make dimensions readable. */
+#paper .single-sheet .profile-views{grid-template-columns:minmax(0,1.08fr) minmax(0,1fr)!important;gap:8px!important}
+#paper .single-sheet .profile-views .cutview>svg{width:100%!important;height:360px!important;max-height:360px!important;object-fit:contain!important;object-position:center center!important}
+#paper .single-sheet .profile-views .iso-print-view>svg{height:310px!important;max-height:310px!important}
+@media print{
+ #paper .single-sheet .profile-views .cutview>svg{height:90mm!important;max-height:90mm!important;object-fit:contain!important;object-position:center center!important}
+ #paper .single-sheet .profile-views .iso-print-view>svg{height:90mm!important;max-height:90mm!important}
+}
+/* 6.9: enlarge the actual finished profile, not only the print container. */
+#paper .single-sheet .finished-full svg{object-fit:contain!important;object-position:center center!important}
+@media print{
+ #paper .single-sheet .finished-full svg{height:74mm!important;max-height:74mm!important}
+ #paper .single-sheet .finished-view>div>div{padding:0!important;line-height:1.02!important}
+ #paper .single-sheet .finished-view>div>div span:last-child{font-size:5.7pt!important}
+}
+</style><style>
+/* v7.1: reserved dimension margins and readable annotation legend */
+#paper .single-sheet .finished-full svg{height:265px!important;max-height:265px!important;object-fit:contain!important}
+#paper .single-sheet .finished-view .color-key{margin:2px 0 6px!important;position:relative;z-index:1;background:white}
+#paper .single-sheet .profile-dimension-legend{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 12px;margin-top:6px}
+#paper .single-sheet .profile-dimension-legend>div{display:flex!important;flex-wrap:wrap!important;gap:3px 6px!important;white-space:normal!important;align-items:baseline!important;line-height:1.3!important;min-width:0!important;padding:4px 2px!important}
+#paper .single-sheet .profile-dimension-legend span{white-space:normal!important;margin-left:0!important;font-size:10px!important}
+#paper .single-sheet .profile-dimension-legend span:last-child{margin-left:0!important;font-size:9px!important}
+@media print{
+ #paper .single-sheet .finished-full svg{height:66mm!important;max-height:66mm!important}
+ #paper .single-sheet .profile-dimension-legend>div{padding:1mm 0!important;font-size:7pt!important}
+ #paper .single-sheet .profile-dimension-legend span{font-size:7pt!important}
+ #paper .single-sheet .profile-dimension-legend span:last-child{font-size:6.5pt!important}
+}
+</style>
+<style>
+/* 7.6: somente chapas planas; perfis dobrados permanecem inalterados */
+#paper .flat-sheet .print-drawing>.views{
+ display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)!important;
+ gap:8px 14px!important;align-items:start!important;
+}
+#paper .flat-sheet .print-drawing>.views>div:first-child{
+ grid-column:1/-1!important;min-width:0!important;
+}
+#paper .flat-sheet .print-drawing>.views>div:first-child>svg{
+ width:100%!important;height:440px!important;max-height:440px!important;
+ object-fit:contain!important;object-position:center!important;
+}
+#paper .flat-sheet .print-drawing>.views>div:nth-child(2)>svg{
+ width:100%!important;height:240px!important;max-height:240px!important;
+ object-fit:contain!important;
+}
+#paper .flat-sheet .flat-thickness svg{
+ width:100%!important;height:130px!important;max-height:130px!important;
+ object-fit:contain!important;
+}
+#paper .flat-sheet .flat-thickness h3{margin-top:4px!important}
+#paper .flat-sheet .print-specs td,#paper .flat-sheet .print-specs th{
+ font-size:10px!important;line-height:1.22!important;padding:3px 4px!important;
+}
+@media print{
+ #paper .flat-sheet .print-drawing>.views{
+  display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)!important;
+  gap:2mm 4mm!important;
+ }
+ #paper .flat-sheet .print-drawing>.views>div:first-child>svg{
+  height:113mm!important;max-height:113mm!important;
+ }
+ #paper .flat-sheet .print-drawing>.views>div:nth-child(2)>svg{
+  height:62mm!important;max-height:62mm!important;
+ }
+ #paper .flat-sheet .flat-thickness svg{
+  height:35mm!important;max-height:35mm!important;
+ }
+ #paper .flat-sheet .print-specs{
+  max-height:65mm!important;overflow:visible!important;
+ }
+ #paper .flat-sheet .print-specs td,#paper .flat-sheet .print-specs th{
+  font-size:8pt!important;line-height:1.2!important;padding:2px 3px!important;
+ }
+ #paper .flat-sheet .print-specs .specs-meta{font-size:8pt!important}
+}
+</style>
+<h1>DESENHO TÉCNICO PRO</h1><div id="pwa-install-panel" style="border:1px solid #ff9838;border-radius:10px;padding:10px;margin:10px 0;background:#292c30"><button id="pwa-install-button" type="button" class="primary" style="display:none;width:100%;margin-bottom:6px">Instalar aplicativo no celular</button><small id="pwa-install-info" style="display:block;color:#e2e6ea">Para instalar: abra este site publicado no Netlify pelo Chrome e toque em ⋮ → Adicionar à tela inicial / Instalar aplicativo.</small></div><small>Versão 7.8 PWA • Todas as medidas em mm</small><section id="modelPanel"><h2>1 · Escolha o modelo</h2><div id="models" class="grid"></div></section><details id="thicknessDetails"><summary>Espessura</summary><section id="thicknessPanel"><h2>Espessura da chapa</h2><label>Espessura (mm)<input id="thick" type="number" inputmode="decimal" value="3" min="0.1" step="any"></label><div class="grid" style="margin-top:8px"><button type="button" onclick="setThickness(3.175)">1/8&quot;</button><button type="button" onclick="setThickness(4.8625)">3/16&quot;</button><button type="button" onclick="setThickness(6.35)">1/4&quot;</button><button type="button" onclick="setThickness(7.9375)">5/16&quot;</button><button type="button" onclick="setThickness(9.525)">3/8&quot;</button><button type="button" onclick="setThickness(12.7)">1/2&quot;</button></div><label>Ou informe em polegadas<input id="inchEntry" inputmode="decimal" placeholder="Ex.: 0,25 ou 1/4" type="text"></label><button type="button" onclick="applyInch()">Converter para mm</button><small id="inchStatus"></small></section></details><details><summary>Dados do projeto</summary><section><div class="grid"><label>Cliente<input id="client"></label><label>Desenho / revisão<input id="ref" value="001 / 00"></label><label>Material<input id="mat" value="Aço carbono"></label><label>Quantidade<input id="qty" type="number" value="1" min="1"></label></div></section></details><section id="quick"><h2>2 · Medidas da peça</h2><div id="quickDrawing"></div></section><section id="fields"></section><dialog id="editDialog"><form method="dialog"><h2 id="editLabel"></h2><input id="editValue" type="number" step="any" inputmode="decimal"><p><button value="cancel">Cancelar</button> <button class="primary" value="ok">Aplicar</button></p></form></dialog><details open><summary>3 · Furos e rasgos</summary><section id="holesPanel"><h2>Furos e rasgos</h2><div id="holeMap"></div><p id="holeStatus"></p><button onclick="centerCut()">Centro da chapa</button><div id="cutPositionWrap" style="padding:10px;border:1px solid #b6c9da;border-radius:8px;margin:10px 0"><label>Tipo de corte<select id="cutPosition" onchange="updateCutPositionUI();updateCutLimits()"><option value="center">Centralizado</option><option value="edge">Pela borda</option></select></label><div id="edgeOptions" style="display:none"><label>Borda<select id="cutEdge" onchange="updateCutPositionUI();updateCutLimits()"><option value="bottom">Inferior</option><option value="top">Superior</option><option value="left">Esquerda</option><option value="right">Direita</option></select></label><small id="edgeHelp"></small></div></div><div class="grid"><label>Centro X (mm)<input id="hx" type="number" value="25"></label><label>Centro Y (mm)<input id="hy" type="number" value="25"></label><label>Diâmetro / largura (mm)<input id="hd" type="number" value="10"></label><label>Altura (mm)<input id="hh" type="number" value="10"></label></div><small id="cutLimitInfo" style="display:block;margin:8px 0;color:#1769aa;font-weight:600"></small><button onclick="addHole(false)">+ Furo</button> <button onclick="addHole(true)">+ Rasgo retangular</button><button onclick="addHole('slot')">+ Rasgo oblongo</button><div id="holeList"></div></section></details><p id="error"></p><h2 class="outputTitle">4 · Desenho técnico e cotas</h2><section id="paper"></section><section class="grid"><button class="primary" onclick="previewPrint()">Ver antes de imprimir</button><button onclick="if(draw())print()">PDF A4 / Imprimir</button><button onclick="dxf()">Baixar DXF (conferir antes de cortar)</button><button onclick="save()">Salvar projeto</button><button onclick="document.getElementById('load').click()">Abrir projeto</button><input hidden id="load" type="file" accept=".json"></section><dialog id="printPreview" style="width:min(96vw,850px);max-width:850px;max-height:92vh;overflow:auto;background:#f2f2f2;color:#111"><div style="display:flex;gap:8px;justify-content:space-between;position:sticky;top:0;background:#f2f2f2;padding:8px"><strong>Prévia de impressão A4</strong><div><button onclick="document.getElementById('printPreview').close();if(draw())print()">Imprimir / PDF</button><button onclick="document.getElementById('printPreview').close()">Fechar</button></div></div><div id="previewSheet" style="background:white;color:#111;padding:16px"></div><small>Visualização esquemática. Confira as opções da impressora.</small></dialog><small>Protótipo: priorize as cotas acabadas. Desenvolvimento e DXF da chapa aberta para peças dobradas são estimativos e exigem conferência pela empresa executora antes de fabricar. Atenção: rasgos que ultrapassam a borda são exibidos para referência; o DXF mantém contornos sobrepostos e deve ser ajustado/unificado no CAD antes do corte. DXF contém contorno, furos e rasgos na chapa aberta estimada; linhas de dobra em camada separada. A vista isométrica é esquemática.</small><script>
+document.addEventListener('focusin',e=>{
+ const el=e.target;
+ if(el instanceof HTMLInputElement && el.type==='number'){
+   el.type='text';el.inputMode='decimal';el.dataset.numericEditing='1';
+   el.select();el.classList.add('measure-focus');
+ }else if(el instanceof HTMLInputElement && el.type==='text'){
+   el.select();el.classList.add('measure-focus');
+ }
+});
+document.addEventListener('focusout',e=>{
+ const el=e.target;
+ if(el.dataset?.numericEditing==='1'){
+   delete el.dataset.numericEditing;
+   el.type='number';
+ }
+ el.classList?.remove('measure-focus');
+});
+const $=id=>document.getElementById(id), N=id=>Number($(id).value), fmt=n=>Number(n.toFixed(2)).toString(), esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const models=[['Chapa','M12 15H88V65H12Z'],['Disco','M50 8A32 32 0 1 0 50 72A32 32 0 1 0 50 8'],['Flange','M50 8A32 32 0 1 0 50 72A32 32 0 1 0 50 8 M50 25A15 15 0 1 0 50 55A15 15 0 1 0 50 25'],['Triângulo','M10 65H90L45 10Z'],['L','M20 10V65H85'],['U','M15 10V65H85V10'],['Z','M10 15H50V65H90'],['Cartola','M5 65H22V15H78V65H95'],['Terça U enrijecida','M35 65H20V15H80V65H65'],['Degrau','M5 65H35V40H65V15H95'],['Trapézio','M5 65H20L35 15H65L80 65H95'],['Personalizado','M5 65H25V35L50 10L75 35V65H95']];let mode=0,holes=[],legs=[80,200,80],angles=[90,90],legRefs=['outside','outside','outside'],geom=null;
+function field(id,label,v){return `<label>${label}<input type="number" step="any" id="${id}" value="${v}"></label>`}function choose(i){mode=i;holes=[];if(mode!==0)$('cutPosition').value='center';let presets={4:[[80,200],[90]],5:[[80,200,80],[90,90]],6:[[80,100,80],[90,-90]],7:[[30,80,150,80,30],[90,-90,-90,90]],8:[[25,80,200,80,25],[90,90,90,90]],9:[[50,50,50,50,50],[90,-90,90,-90]],10:[[30,80,150,80,30],[45,-45,-45,45]],11:[[30,70,100,100,70,30],[90,-45,-90,-45,90]]};if(presets[i]) [legs,angles]=presets[i];legRefs=legs.map(()=> 'outside');dimSides=legs.map(()=> 'auto');renderFields();if(mode<4){let v=mode===1||mode===2?N('od'):N('w'),h=mode===1||mode===2?v:N('h');$('hx').value=fmt(v/2);$('hy').value=fmt(mode===3?h/3:h/2)}updateCutPositionUI();updateCutLimits();draw()}
+function renderFields(){ $('models').innerHTML=models.map((m,i)=>`<button class="${mode===i?'active':''}" onclick="choose(${i})"><svg viewBox="0 0 100 80"><path d="${m[1]}" fill="${i<4?'#9ba6b1':'none'}" fill-rule="evenodd" stroke="#dce3e9" stroke-width="${i<4?2:6}" stroke-linejoin="round"/></svg>${m[0]}</button>`).join('');let f='';if(mode===0||mode===3)f=field('w','Largura',300)+field('h','Altura',200);else if(mode<3)f=field('od','Diâmetro externo',250)+(mode===2?field('idiam','Diâmetro interno',150)+field('pcd','Círculo de furação',210)+field('count','Número de furos',6)+field('bolt','Diâmetro dos furos',14):'');else f=field('length','Comprimento da peça',500)+`<details id="advancedBend"><summary>Avançado — desenvolvimento da chapa (opcional)</summary><p><small>Use somente se precisar estimar a chapa aberta. O raio e o fator K dependem das ferramentas da empresa que fará a dobra. O desenho de fabricação deve priorizar as medidas acabadas.</small></p><div class="grid">${field('radius','Raio interno estimado (mm)',3)}${field('k','Fator K estimado',0.42)}</div></details>`+`<label>Referência inicial<select id="basis" onchange="setAllRefs(this.value)"><option value="outside">Todas EXTERNAS</option><option value="inside">Todas INTERNAS</option><option value="tangent">Todas entre tangências (avançado)</option></select></label>`; $('fields').innerHTML=`<h2>${models[mode][0]}</h2><div class="grid">${f}</div>${mode>=4?'<div id="legs"></div><button onclick="readLegs();legs.push(50);angles.push(90);legRefs.push(&quot;outside&quot;);dimSides.push(&quot;auto&quot;);renderLegs();draw()">+ Dobra</button> <button onclick="readLegs();if(legs.length>2){legs.pop();angles.pop();legRefs.pop();dimSides.pop();renderLegs();draw()}">− Dobra</button>':''}`;if(mode>=4)renderLegs();}
+let dimSides=[];function renderLegs(){$('legs').innerHTML=legs.map((l,i)=>`<div class="leg-card"><div class="leg-card-title"><strong>L${i+1} · Lado ${i+1}</strong>${i<angles.length?`<span>D${i+1} · Dobra após este lado</span>`:'<span>Último lado</span>'}</div><div class="leg-card-main"><div class="leg-card-measure">${field('l'+i,'Cota L'+(i+1)+' (mm)',l)}</div>${i<angles.length?`<div class="leg-card-angle"><label>Ângulo D${i+1} (°)<input id="a${i}" type="text" inputmode="text" value="${angles[i]}" placeholder="Ex.: -90" aria-label="Ângulo da dobra D${i+1}"></label></div>`:''}</div><div class="leg-card-options"><label>Referência da medida<select id="ref${i}"><option value="outside" ${legRefs[i]==='outside'?'selected':''}>Externa</option><option value="inside" ${legRefs[i]==='inside'?'selected':''}>Interna</option><option value="tangent" ${legRefs[i]==='tangent'?'selected':''}>Entre tangências</option></select></label></div></div>`).join('')}
+function setAllRefs(ref){readLegs();legRefs=legs.map(()=>ref);renderLegs();draw()}
+function readLegs(){if(mode>=4){legs=legs.map((_,i)=>N('l'+i));angles=angles.map((_,i)=>{let v=String($('a'+i)?.value??'').trim().replace(/[−–]/g,'-').replace(',','.');return v===''?NaN:Number(v)});legRefs=legs.map((_,i)=>$('ref'+i)?.value||'outside');dimSides=legs.map(()=> 'auto')}}
+function notchIntersects(q,w,h,mode){
+ let pts=q.slot?slotPoints(q):[[q.x-q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y+q.h/2],[q.x-q.d/2,q.y+q.h/2]];
+ let inside=(x,y)=>mode===0?(x>=0&&x<=w&&y>=0&&y<=h):(Math.hypot(x-w/2,y-h/2)<=w/2 && (mode!==2||Math.hypot(x-w/2,y-h/2)>=N('idiam')/2));
+ if(pts.some(p=>inside(...p)))return true;
+ // Um rasgo pode cobrir toda a borda sem ter vértices dentro da chapa.
+ let bx0=q.x-q.d/2,bx1=q.x+q.d/2,by0=q.y-q.h/2,by1=q.y+q.h/2;
+ if(mode===0)return bx0<w&&bx1>0&&by0<h&&by1>0;
+ for(let j=0;j<180;j++){let a=j*Math.PI/90,x=w/2+w/2*Math.cos(a),y=h/2+h/2*Math.sin(a);if(x>=bx0&&x<=bx1&&y>=by0&&y<=by1)return true}
+ return false;
+}
+function slotPoints(q){let r=Math.min(q.d,q.h)/2;return Array.from({length:96},(_,j)=>{let z=2*Math.PI*j/96;return [q.x+r*Math.cos(z)+Math.sign(Math.cos(z))*(q.d/2-r),q.y+r*Math.sin(z)+Math.sign(Math.sin(z))*(q.h/2-r)]})}let editing=-1;function cutLimits(x,y){
+ let w=(mode===1||mode===2)?Number($('od').value):(mode===0||mode===3)?Number($('w').value):(geom?geom.w:0);
+ let h=(mode===1||mode===2)?Number($('od').value):(mode===0||mode===3)?Number($('h').value):(geom?geom.h:0);
+ let maxW=Math.max(0,2*Math.min(x,w-x)),maxH=Math.max(0,2*Math.min(y,h-y));
+ if(mode===1||mode===2){
+  let R=w/2,dx=x-R,dy=y-R,inner=mode===2?Number($('idiam').value)/2:0;
+  if(Math.hypot(dx,dy)>=R || (inner&&Math.hypot(dx,dy)<=inner))return {w,h,maxW:0,maxH:0};
+  // Conservative bound: all four rectangle corners must be within the disk.
+  // A hole's diameter is checked separately against the exact circle.
+  const fits=(rw,rh)=>{let corners=[[x-rw/2,y-rh/2],[x+rw/2,y-rh/2],[x+rw/2,y+rh/2],[x-rw/2,y+rh/2]];
+   return corners.every(([a,b])=>Math.hypot(a-R,b-R)<=R+1e-8 && (!inner||Math.hypot(a-R,b-R)>=inner-1e-8));};
+  let low=0,high=maxW;for(let i=0;i<38;i++){let mid=(low+high)/2;if(fits(mid,0))low=mid;else high=mid}maxW=low;
+  low=0;high=maxH;for(let i=0;i<38;i++){let mid=(low+high)/2;if(fits(0,mid))low=mid;else high=mid}maxH=low;
+ }
+ if(mode===3){let fits=(rw,rh)=>[[x-rw/2,y-rh/2],[x+rw/2,y-rh/2],[x+rw/2,y+rh/2],[x-rw/2,y+rh/2]].every(([a,b])=>b>=0&&b<=h&&a>=w/2*b/h&&a<=w-w/2*b/h);let low=0,high=maxW;for(let i=0;i<35;i++){let mid=(low+high)/2;if(fits(mid,0))low=mid;else high=mid}maxW=low;low=0;high=maxH;for(let i=0;i<35;i++){let mid=(low+high)/2;if(fits(0,mid))low=mid;else high=mid}maxH=low;}
+ return {w,h,maxW,maxH};
+}
+function updateCutPositionUI(){
+ // Recorte aberto pela borda só é oferecido nos formatos com
+ // geometria e cotagem implementadas somente para chapa retangular.
+ const edgeSupported=mode===0;
+ const cutWrap=$('cutPositionWrap');if(cutWrap)cutWrap.style.display=edgeSupported?'':'none';
+ if(!edgeSupported)$('cutPosition').value='center';
+ $('cutEdge').querySelectorAll('option').forEach(o=>{o.disabled=mode===3&&o.value!=='bottom'});
+ 
+ let edge=$('cutPosition')?.value==='edge',dir=$('cutEdge')?.value||'bottom';
+ $('edgeOptions').style.display=edge?'block':'none';
+ $('edgeHelp').textContent=dir==='bottom'?'X = centro horizontal; Y = profundidade para cima, desde a borda inferior.':dir==='top'?'X = centro horizontal; Y = profundidade para baixo, desde a borda superior.':dir==='left'?'Y = centro vertical; X = profundidade para a direita, desde a borda esquerda.':'Y = centro vertical; X = profundidade para a esquerda, desde a borda direita.';
+ $('hx').parentElement.firstChild.textContent=edge&&(dir==='left'||dir==='right')?'Profundidade X (mm)':'Centro X (mm)';
+ $('hy').parentElement.firstChild.textContent=edge&&(dir==='top'||dir==='bottom')?'Profundidade Y (mm)':'Centro Y (mm)';
+}
+document.addEventListener('input',e=>{if(['hx','hy','hd','hh','w','h','od','idiam'].includes(e.target.id))updateCutLimits()});
+function updateCutLimits(){
+ let e=$('cutLimitInfo');if(!e)return;
+ let x=N('hx'),y=N('hy'),a=cutLimits(x,y),edge=$('cutPosition')?.value==='edge',dir=$('cutEdge')?.value||'bottom';
+ if(edge){
+  if(mode!==0){e.textContent='Neste modelo, o recorte aberto pela borda ainda não tem cotagem confiável. Use centralizado; o limite geométrico é calculado automaticamente.';return}
+  let horizontal=dir==='top'||dir==='bottom',cross=horizontal?x:y,crossMax=horizontal?a.w:a.h,depthMax=horizontal?a.h:a.w;
+  let crossWidth=Math.max(0,2*Math.min(cross,crossMax-cross));
+  e.textContent=crossWidth>0?`Abertura máxima ${fmt(crossWidth)} mm · profundidade máxima ${fmt(depthMax)} mm, medidas desde a borda.`:'Informe o centro transversal dentro da chapa.';
+ }else e.textContent=a.maxW>0&&a.maxH>0?`Limite nesta posição: largura até ${fmt(a.maxW)} mm e altura até ${fmt(a.maxH)} mm. Furos circulares: limite pelo raio.`:'Centro fora da área útil. Ajuste X e Y.';
+}
+function addHole(rect){
+ let q={x:N('hx'),y:N('hy'),d:N('hd'),h:rect?N('hh'):0,slot:rect==='slot'};
+ let aviso='',edge=$('cutPosition')?.value==='edge',dir=$('cutEdge')?.value||'bottom';
+ if(edge&&mode!==0){$('holeStatus').textContent='Para este formato, use recorte centralizado. O corte aberto pela borda ainda não está validado geometricamente.';return}
+ if(edge&&!rect){$('holeStatus').textContent='Para recorte aberto, escolha rasgo retangular ou oblongo.';return}
+ if(!(q.d>0&&(!rect||q.h>0))){$('holeStatus').textContent='Informe dimensões positivas.';return}
+ if(edge&&mode!==0&&dir!=='bottom'){$('holeStatus').textContent='No triângulo, recorte aberto está disponível pela base inferior. As laterais inclinadas exigem posicionamento próprio.';return}
+ if(edge){
+  let w=N('w'),h=N('h'),horizontal=dir==='bottom'||dir==='top',cross=horizontal?q.x:q.y,crossMax=horizontal?w:h,depthMax=horizontal?h:w;
+  let maxOpening=2*Math.min(cross,crossMax-cross);
+  if(!(cross>0&&cross<crossMax&&maxOpening>0)){$('holeStatus').textContent='Posição fora da chapa.';return}
+  let opening=Math.min(q.d,maxOpening),depth=Math.min(q.h,depthMax);if(mode===3){let available=2*Math.min(cross-w*depth/(2*h),w-w*depth/(2*h)-cross);opening=Math.min(opening,Math.max(0,available));if(opening<=0){$('holeStatus').textContent='Rasgo não cabe dentro das laterais inclinadas do triângulo.';return}}
+  if(opening<q.d||depth<q.h)aviso='Recorte ajustado ao limite da chapa. ';
+  if(q.slot&&depth<opening){$('holeStatus').textContent='Rasgo oblongo não cabe: a profundidade precisa ser igual ou maior que a abertura.';return}
+  if(horizontal){q.d=opening;q.h=depth;q.y=dir==='bottom'?depth/2:h-depth/2}
+  else{q.d=depth;q.h=opening;q.x=dir==='left'?depth/2:w-depth/2}
+  q.edge=dir;q.depth=depth;q.opening=opening;
+ }else{
+  let lim=cutLimits(q.x,q.y);
+  if(!(lim.maxW>0&&lim.maxH>0)){$('holeStatus').textContent='Centro fora da área útil. Ajuste X e Y.';return}
+  if(mode===1||mode===2){
+   const R=lim.w/2,dist=Math.hypot(q.x-R,q.y-R),inner=mode===2?N('idiam')/2:0;
+   if(!rect){let maxD=2*Math.min(R-dist,inner?dist-inner:Infinity);if(maxD<=0){$('holeStatus').textContent='Furo fora da região circular útil.';return}if(q.d>maxD){q.d=maxD;aviso='Diâmetro ajustado ao limite circular. '}}
+   else{
+    // Binary search a common reduction factor, testing the exact slot perimeter.
+    let originalD=q.d,originalH=q.h;
+    const fits=(factor)=>{let test={...q,d:originalD*factor,h:originalH*factor};let pts=q.slot?slotPoints(test):[[q.x-test.d/2,q.y-test.h/2],[q.x+test.d/2,q.y-test.h/2],[q.x+test.d/2,q.y+test.h/2],[q.x-test.d/2,q.y+test.h/2]];
+     return pts.every(([px,py])=>{let d=Math.hypot(px-R,py-R);return d<=R+1e-7&&(!inner||d>=inner-1e-7)});};
+    if(!fits(1)){let low=0,high=1;for(let i=0;i<40;i++){let mid=(low+high)/2;if(fits(mid))low=mid;else high=mid}if(low<.001){$('holeStatus').textContent='Não há espaço para o rasgo nesta posição. Mude o centro.';return}q.d=originalD*low;q.h=originalH*low;aviso='Rasgo reduzido proporcionalmente para caber no disco. '}
+   }
+  }else{
+   let maxD=q.h?lim.maxW:Math.min(lim.maxW,lim.maxH);
+   if(q.d>maxD){q.d=maxD;aviso+='Largura/diâmetro ajustado ao limite. '}
+   if(q.h&&q.h>lim.maxH){q.h=lim.maxH;aviso+='Altura ajustada ao limite. '}
+  }
+  if(q.slot&&q.h<q.d){$('holeStatus').textContent='Rasgo oblongo: a altura deve ser maior ou igual à largura. Ajuste as medidas.';return}
+ }
+ q.d=Number(q.d.toFixed(5));q.h=Number(q.h.toFixed(5));
+ if(!(q.d>0&&(!rect||q.h>0))){$('holeStatus').textContent='O recorte não cabe nesta posição.';return}
+ let old=holes.slice();holes.push(q);
+ if(!draw()){let msg=$('error').textContent;holes=old;draw();$('error').textContent=msg;$('holeStatus').textContent=msg}
+ else {$('holeStatus').textContent=aviso+'Recorte R'+holes.length+' adicionado com cotas efetivas.';updateCutLimits()}
+}
+function removeHole(i){holes.splice(i,1);draw();$('holeStatus').textContent='Recorte excluído.'}
+let editId='';function editMeasure(id){editId=id;let e=$(id);$('editLabel').textContent=e.parentElement.firstChild.textContent;$('editValue').value=e.value;$('editDialog').showModal();$('editValue').focus();$('editValue').select()}$('editDialog').addEventListener('close',()=>{if($('editDialog').returnValue==='ok'&&$('editValue').value!==''){ $(editId).value=$('editValue').value;draw() }});function quick(){let q=$('quickDrawing');if(!q)return;let tag=(id,x,y,prefix='')=>`<g role="button" tabindex="0" onclick="editMeasure('${id}')" onkeydown="if(event.key==='Enter')editMeasure('${id}')"><rect x="${x-32}" y="${y-17}" width="64" height="25" rx="5" fill="#fff1df" stroke="#d98a35"/><text class="measure" x="${x}" y="${y}" text-anchor="middle" font-size="13">${prefix}${esc($(id).value)}</text></g>`;let a='';if(mode<4){if(mode===0||mode===3){a=`<path d="${mode===0?'M85 55H275V155H85Z':'M85 155H275L180 55Z'}" fill="#e5e9ed" stroke="#333" stroke-width="2"/>`+tag('w',180,183)+tag('h',45,108)}else{a='<circle cx="180" cy="100" r="65" fill="#dce1e6" stroke="#333"/>'+tag('od',180,183,'Ø');if(mode===2)a+='<circle cx="180" cy="100" r="30" fill="white" stroke="#333"/><circle cx="180" cy="100" r="50" fill="none" stroke="#888" stroke-dasharray="4 3"/>'+tag('idiam',180,104,'Ø')+tag('pcd',290,65,'Ø')+tag('bolt',290,110,'Ø')+tag('count',65,65,'Nº ');}}else{let pts=[[0,0]],dir=0;for(let i=0;i<legs.length;i++){let l=Math.max(1,Number($('l'+i).value)||1);let [x,y]=pts.at(-1);pts.push([x+l*Math.cos(dir),y+l*Math.sin(dir)]);if(i<angles.length)dir+=(Number($('a'+i).value)||0)*Math.PI/180}let xs=pts.map(p=>p[0]),ys=pts.map(p=>p[1]),minx=Math.min(...xs),miny=Math.min(...ys),sc=Math.min(190/(Math.max(...xs)-minx||1),110/(Math.max(...ys)-miny||1));let pp=pts.map(([x,y])=>[180+(x-(minx+Math.max(...xs))/2)*sc,150-(y-(miny+Math.max(...ys))/2)*sc]);a=`<polyline points="${pp.map(p=>p.join(',')).join(' ')}" fill="none" stroke="#59636e" stroke-width="4" stroke-linejoin="round"/>`;let used=[];pp.slice(0,-1).forEach(([x,y],i)=>{let [u,v]=pp[i+1],mx=(x+u)/2,my=(y+v)/2,dx=u-x,dy=v-y,L=Math.hypot(dx,dy)||1,nx=-dy/L,ny=dx/L;if(nx*(mx-180)+ny*(my-150)<0){nx=-nx;ny=-ny}let candidates=[];for(let dist of [36,48,62,80,100,120])for(let shift of [0,-24,24,-48,48]){let cx=mx+nx*dist+dx/L*shift,cy=my+ny*dist+dy/L*shift;if(cx>=34&&cx<=326&&cy>=22&&cy<=270&&!used.some(([px,py])=>Math.abs(px-cx)<70&&Math.abs(py-cy)<32)&&!pp.slice(0,-1).some(([ax,ay],j)=>{let [bx,by]=pp[j+1];return Math.min(ax,bx)<=cx+34&&Math.max(ax,bx)>=cx-34&&Math.min(ay,by)<=cy+13&&Math.max(ay,by)>=cy-13}))candidates.push([cx,cy]);}let pos=candidates[0];if(!pos){return;}let [cx,cy]=pos;used.push(pos);let ox=nx*20,oy=ny*20;a+=`<path d="M${x} ${y}L${x+ox} ${y+oy} M${u} ${v}L${u+ox} ${v+oy} M${x+ox} ${y+oy}L${u+ox} ${v+oy} M${mx+ox} ${my+oy}L${cx} ${cy}" stroke="#888" stroke-width=".8" fill="none"/>`+tag('l'+i,cx,cy+4)});a+=tag('length',180,310,'C '); }q.innerHTML=`<svg viewBox="0 0 360 ${mode>=4?330:210}" xmlns="http://www.w3.org/2000/svg">${a}</svg><small>Medidas em mm. ${mode>=4?'Perfil esquemático. Escolha interna ou externa em cada lado abaixo.':'Toque nas cotas laranja.'}</small>`;}
+function dimensionedProfile(){
+  // Cotas compactas, em faixas exclusivas; legenda colorida abaixo.
+  const pts=[[0,0]];let ang=0;
+  for(let i=0;i<legs.length;i++){
+    let [x,y]=pts.at(-1);pts.push([x+legs[i]*Math.cos(ang),y+legs[i]*Math.sin(ang)]);
+    if(i<angles.length)ang+=angles[i]*Math.PI/180;
+  }
+  let xx=pts.map(p=>p[0]),yy=pts.map(p=>p[1]),minx=Math.min(...xx),maxx=Math.max(...xx),miny=Math.min(...yy),maxy=Math.max(...yy);
+  let scale=Math.min(455/Math.max(1,maxx-minx),225/Math.max(1,maxy-miny),2.05);
+  let pp=pts.map(p=>[360+(p[0]-(minx+maxx)/2)*scale,212-(p[1]-(miny+maxy)/2)*scale]);
+  // v7.2: cotagem padronizada do perfil U: uma cota por lado,
+  // paralela ao trecho, com linhas auxiliares curtas e sem caixas sobrepostas.
+  if(mode===5 && legs.length===3){
+    const factor=Math.min(1.72,320/Math.max(1,maxy-miny),370/Math.max(1,maxx-minx));
+    const upts=pts.map(([x,y])=>[240+(x-(minx+maxx)/2)*factor,235-(y-(miny+maxy)/2)*factor]);
+    const col={inside:'#1769aa',outside:'#b45309',tangent:'#5b6470'};
+    const names={inside:'INTERNA',outside:'EXTERNA',tangent:'TANGÊNCIA'};
+    const b={left:Infinity,top:Infinity,right:-Infinity,bottom:-Infinity};
+    const expand=(x,y,p=0)=>{b.left=Math.min(b.left,x-p);b.top=Math.min(b.top,y-p);b.right=Math.max(b.right,x+p);b.bottom=Math.max(b.bottom,y+p)};
+    upts.forEach(([x,y])=>expand(x,y,5));
+    let lines='',legend='';
+    const centerX=(Math.min(...upts.map(q=>q[0]))+Math.max(...upts.map(q=>q[0])))/2;
+    const centerY=(Math.min(...upts.map(q=>q[1]))+Math.max(...upts.map(q=>q[1])))/2;
+    for(let i=0;i<3;i++){
+      const [x0,y0]=upts[i],[x1,y1]=upts[i+1];
+      const horizontal=Math.abs(x1-x0)>Math.abs(y1-y0);
+      const ref=legRefs[i]||'outside',color=col[ref]||col.outside;
+      const chosen=dimSides[i] && dimSides[i]!=='auto'?dimSides[i]:(ref==='inside'?'inside':'outside');
+      let nx=horizontal?0:1,ny=horizontal?1:0;
+      const mx=(x0+x1)/2,my=(y0+y1)/2;
+      if(nx*(mx-centerX)+ny*(my-centerY)<0){nx=-nx;ny=-ny}
+      if(chosen==='inside'){nx=-nx;ny=-ny}
+      // For the usual U, keep the top and bottom cotas on opposite sides.
+      const offset=horizontal?37:46;
+      const ax=x0+nx*offset,ay=y0+ny*offset,bx=x1+nx*offset,by=y1+ny*offset;
+      const label=`L${i+1}  ${fmt(legs[i])} mm`;
+      const tx=(ax+bx)/2+nx*16,ty=(ay+by)/2+ny*16;
+      const w=Math.max(78,label.length*6.8+14),h=23;
+      lines+=`<g fill="none" stroke="${color}" stroke-width="1.35"><path d="M${x0+nx*7} ${y0+ny*7}L${x0+nx*(offset+9)} ${y0+ny*(offset+9)} M${x1+nx*7} ${y1+ny*7}L${x1+nx*(offset+9)} ${y1+ny*(offset+9)} M${ax} ${ay}L${bx} ${by}"/></g><rect x="${tx-w/2}" y="${ty-h/2}" width="${w}" height="${h}" rx="4" fill="white" stroke="${color}" stroke-width="1.5"/><text x="${tx}" y="${ty+4}" font-size="13" font-weight="bold" fill="${color}" text-anchor="middle">${label}</text>`;
+      expand(ax,ay,4);expand(bx,by,4);expand(tx-w/2,ty-h/2,5);expand(tx+w/2,ty+h/2,5);
+      legend+=`<div><span style="font-weight:bold;color:${color}">L${i+1} ${fmt(legs[i])} mm — ${names[ref]}</span></div>`;
+    }
+    const pad=23, vb=`${b.left-pad} ${b.top-pad} ${b.right-b.left+2*pad} ${b.bottom-b.top+2*pad}`;
+    const outline=`<polyline points="${upts.map(p=>p.join(',')).join(' ')}" stroke="#202b36" stroke-width="5" stroke-linejoin="round" fill="none"/>`;
+    return `<div class="finished-view"><h3>Peça acabada · cotas por lado</h3><p class="color-key">Azul: interna · Laranja: externa · Cinza: tangência</p><svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">${outline}${lines}</svg><div class="profile-dimension-legend">${legend}</div></div>`;
+  }
+  // v7.3: cotagem uniforme para perfis L, Z, cartola e personalizado.
+  // As linhas de cota ficam paralelas aos trechos; etiquetas sem colisões.
+  const colors={inside:'#1769aa',outside:'#b45309',tangent:'#5b6470'};
+  const words={inside:'INTERNA',outside:'EXTERNA',tangent:'TANGÊNCIA'};
+  const cx=(minx+maxx)/2,cy=(miny+maxy)/2;
+  const factor=Math.min(1.72,340/Math.max(1,maxy-miny),430/Math.max(1,maxx-minx));
+  const points=pts.map(([x,y])=>[290+(x-cx)*factor,235-(y-cy)*factor]);
+  const boxes=[], segments=[], bounds=[];
+  const addBound=(x,y,p=0)=>bounds.push([x-p,y-p,x+p,y+p]);
+  points.forEach(([x,y])=>addBound(x,y,6));
+  const collide=(a,b,p=8)=>a.x<b.x+b.w+p&&a.x+a.w+p>b.x&&a.y<b.y+b.h+p&&a.y+a.h+p>b.y;
+  const nearSegment=(box,p0,p1)=>{
+    // Etiquetas nunca devem cobrir a linha grossa da peça.
+    const [x0,y0]=p0,[x1,y1]=p1;
+    for(let k=0;k<=12;k++){
+      const x=x0+(x1-x0)*k/12,y=y0+(y1-y0)*k/12;
+      if(x>box.x-7&&x<box.x+box.w+7&&y>box.y-7&&y<box.y+box.h+7)return true;
+    }
+    return false;
+  };
+  let annotations='',legend='';
+  for(let i=0;i<legs.length;i++){
+    const p0=points[i],p1=points[i+1];
+    const dx=p1[0]-p0[0],dy=p1[1]-p0[1],len=Math.hypot(dx,dy)||1;
+    const ux=dx/len,uy=dy/len;
+    let nx=-uy,ny=ux;
+    const mx=(p0[0]+p1[0])/2,my=(p0[1]+p1[1])/2;
+    if(nx*(mx-290)+ny*(my-235)<0){nx=-nx;ny=-ny}
+    const ref=legRefs[i]||'outside',color=colors[ref]||colors.outside;
+    const side=dimSides[i]&&dimSides[i]!=='auto'?dimSides[i]:(ref==='inside'?'inside':'outside');
+    if(side==='inside'){nx=-nx;ny=-ny}
+    const label=`L${i+1}  ${fmt(legs[i])} mm`;
+    const bw=Math.max(77,label.length*6.5+12),bh=23;
+    let selected=null;
+    // Primeiro tenta etiqueta próxima da linha de cota, sem cruzar outros trechos.
+    for(const dist of [35,49,65,83,105,130,158,190]){
+      if(selected)break;
+      for(const shift of [0,-24,24,-48,48,-76,76,-106,106]){
+        const px=mx+nx*(dist+17)+ux*shift,py=my+ny*(dist+17)+uy*shift;
+        const box={x:px-bw/2,y:py-bh/2,w:bw,h:bh};
+        if(boxes.some(b=>collide(box,b))||points.slice(0,-1).some((q,j)=>nearSegment(box,q,points[j+1])))continue;
+        selected={dist,px,py,box};break;
+      }
+    }
+    // Em perfis com muitas dobras, amplia a área útil em vez de cortar cotas.
+    if(!selected){
+      for(let k=0;k<60;k++){
+        const px=mx+nx*210+ux*((k%2?-1:1)*Math.ceil(k/2)*30),py=my+ny*210+uy*((k%2?-1:1)*Math.ceil(k/2)*30);
+        const box={x:px-bw/2,y:py-bh/2,w:bw,h:bh};
+        if(!boxes.some(b=>collide(box,b))&&!points.slice(0,-1).some((q,j)=>nearSegment(box,q,points[j+1]))){selected={dist:185,px,py,box};break}
+      }
+    }
+    if(!selected)continue;
+    boxes.push(selected.box);
+    const d=selected.dist,ax=p0[0]+nx*d,ay=p0[1]+ny*d,bx=p1[0]+nx*d,by=p1[1]+ny*d;
+    const tick=5;
+    annotations+=`<g stroke="${color}" stroke-width="1.3" fill="none"><path d="M${p0[0]+nx*5} ${p0[1]+ny*5}L${p0[0]+nx*(d+8)} ${p0[1]+ny*(d+8)} M${p1[0]+nx*5} ${p1[1]+ny*5}L${p1[0]+nx*(d+8)} ${p1[1]+ny*(d+8)} M${ax} ${ay}L${bx} ${by}"/><path d="M${ax-nx*tick-ux*tick} ${ay-ny*tick-uy*tick}L${ax+nx*tick+ux*tick} ${ay+ny*tick+uy*tick} M${bx-nx*tick-ux*tick} ${by-ny*tick-uy*tick}L${bx+nx*tick+ux*tick} ${by+ny*tick+uy*tick}"/></g>`;
+    // Pequena linha-guia para cotas deslocadas; sem atravessar o texto.
+    const baseX=(ax+bx)/2,baseY=(ay+by)/2;
+    const endX=selected.px-nx*bh/2,endY=selected.py-ny*bh/2;
+    annotations+=`<path d="M${baseX} ${baseY}L${endX} ${endY}" stroke="${color}" stroke-width=".9" stroke-dasharray="3 3" fill="none"/>`;
+    annotations+=`<rect x="${selected.box.x}" y="${selected.box.y}" width="${bw}" height="${bh}" rx="4" fill="white" stroke="${color}" stroke-width="1.4"/><text x="${selected.px}" y="${selected.py+4}" font-size="12.5" font-weight="bold" fill="${color}" text-anchor="middle">${label}</text>`;
+    addBound(ax,ay,5);addBound(bx,by,5);
+    addBound(selected.box.x,selected.box.y,4);addBound(selected.box.x+bw,selected.box.y+bh,4);
+    legend+=`<div><span style="font-weight:bold;color:${color}">L${i+1} ${fmt(legs[i])} mm — ${words[ref]}</span></div>`;
+  }
+  const left=Math.min(...bounds.map(v=>v[0]))-18,top=Math.min(...bounds.map(v=>v[1]))-18;
+  const right=Math.max(...bounds.map(v=>v[2]))+18,bottom=Math.max(...bounds.map(v=>v[3]))+18;
+  const vb=`${left} ${top} ${Math.max(140,right-left)} ${Math.max(110,bottom-top)}`;
+  const outline=`<polyline points="${points.map(p=>p.join(',')).join(' ')}" stroke="#202b36" stroke-width="5" stroke-linejoin="round" fill="none"/>`;
+  return `<div class="finished-view"><h3>Peça acabada · cotas por lado</h3><p class="color-key">Azul: interna · Laranja: externa · Cinza: tangência</p><svg viewBox="${vb}" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">${outline}${annotations}</svg><div class="profile-dimension-legend">${legend}</div></div>`;
+}
+function isoView(profile,length,holes=[],developedWidth=0,bendCenters=[]){
+  // Superfícies ordenadas por profundidade: evita linhas internas atravessando outras faces.
+  let cumulative=[0];for(let i=1;i<profile.length;i++)cumulative.push(cumulative.at(-1)+Math.hypot(profile[i][0]-profile[i-1][0],profile[i][1]-profile[i-1][1]));
+  let total=cumulative.at(-1)||1,ratio=total/(developedWidth||total);
+  function fold(x){let d=Math.max(0,Math.min(total,x*ratio)),i=1;while(i<cumulative.length-1&&cumulative[i]<d)i++;let u=(d-cumulative[i-1])/(cumulative[i]-cumulative[i-1]||1);return [profile[i-1][0]+u*(profile[i][0]-profile[i-1][0]),profile[i-1][1]+u*(profile[i][1]-profile[i-1][1])];}
+  const project=(p,z)=>[.8660254*(p[0]-z),.5*(p[0]+z)-p[1]];
+  let front=profile.map(p=>project(p,0)),back=profile.map(p=>project(p,length));let all=front.concat(back),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);let minx=Math.min(...xs),maxx=Math.max(...xs),miny=Math.min(...ys),maxy=Math.max(...ys);let scale=Math.min(525/Math.max(maxx-minx,1),265/Math.max(maxy-miny,1));
+  let xy=p=>[280+(p[0]-(minx+maxx)/2)*scale,157+(p[1]-(miny+maxy)/2)*scale];let pt=p=>xy(p).map(n=>n.toFixed(2)).join(',');
+  let panels=[];for(let i=0;i<profile.length-1;i++){
+    let polygon=[front[i],front[i+1],back[i+1],back[i]];
+    // Profundidade aproximada da face: as faces mais próximas são pintadas por último.
+    let midx=(profile[i][0]+profile[i+1][0])/2,midy=(profile[i][1]+profile[i+1][1])/2;
+    panels.push({i,polygon,depth:midx+midy+length/2});
+  }
+  panels.sort((a,b)=>b.depth-a.depth);
+  let parts='';for(let panel of panels){let {i,polygon}=panel;
+    let shape=polygon.map(pt).join(' '),id='isoFace'+i;
+    // As bordas transversais internas ficam sem traço: não formam triângulos falsos.
+    parts+=`<polygon points="${shape}" fill="${i%2?'#e6ebf0':'#f1f4f7'}" stroke="none"/>`;
+    let openings='';for(let q of holes){let pts=[],rad=q.d/2;
+      if(q.slot&&q.h){let r=Math.min(q.d,q.h)/2;for(let j=0;j<80;j++){let ang=2*Math.PI*j/80;pts.push([q.x+r*Math.cos(ang)+Math.sign(Math.cos(ang))*(q.d/2-r),q.y+r*Math.sin(ang)+Math.sign(Math.sin(ang))*(q.h/2-r)])}}
+      else if(q.h){pts=[[q.x-q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y+q.h/2],[q.x-q.d/2,q.y+q.h/2]]}
+      else for(let j=0;j<80;j++){let ang=2*Math.PI*j/80;pts.push([q.x+rad*Math.cos(ang),q.y+rad*Math.sin(ang)])}
+      openings+=`<polygon points="${pts.map(([x,y])=>pt(project(fold(x),y))).join(' ')}" fill="white" stroke="#687583" stroke-width="1"/>`;
+    }
+    parts+=`<defs><clipPath id="${id}"><polygon points="${shape}"/></clipPath></defs><g clip-path="url(#${id})">${openings}</g>`;
+    // Somente linhas de dobra no comprimento, sem diagonais na face frontal.
+    
+    parts+=`<path d="M${pt(front[i+1])}L${pt(back[i+1])}" stroke="#687580" stroke-width="1" stroke-linecap="round"/>`;
+  }
+  // Extremidades com contorno leve, sem diagonais artificiais entre os segmentos.
+  let capA=front.map(pt).join(' '),capB=back.map(pt).join(' ');
+  // Cota paralela ao eixo longitudinal real, sob a aresta inferior visível.
+  // A direção vem da projeção da peça (não de coordenadas fixas).
+  let edgeIndex=0,lowest=-Infinity;
+  for(let i=0;i<front.length;i++){
+    const avg=(xy(front[i])[1]+xy(back[i])[1])/2;
+    if(avg>lowest){lowest=avg;edgeIndex=i}
+  }
+  const A=xy(front[edgeIndex]),B=xy(back[edgeIndex]);
+  const dx=B[0]-A[0],dy=B[1]-A[1],norm=Math.hypot(dx,dy)||1;
+  let nx=-dy/norm,ny=dx/norm;if(ny<0){nx=-nx;ny=-ny}
+  const offset=35;
+  const C=[A[0]+nx*offset,A[1]+ny*offset],D=[B[0]+nx*offset,B[1]+ny*offset];
+  const mid=[(C[0]+D[0])/2,(C[1]+D[1])/2];
+  let angle=Math.atan2(D[1]-C[1],D[0]-C[0])*180/Math.PI; if(angle>90)angle-=180; if(angle< -90)angle+=180;
+  const line=(p,q)=>`M${p[0].toFixed(1)} ${p[1].toFixed(1)}L${q[0].toFixed(1)} ${q[1].toFixed(1)}`;
+  const label=fmt(length)+' mm';
+  const isoDim=`<g stroke="#a45118" stroke-width="1.8" fill="none"><path d="${line(A,[C[0]+nx*8,C[1]+ny*8])} ${line(B,[D[0]+nx*8,D[1]+ny*8])} ${line(C,D)}"/><path d="M${C[0]-dx/norm*8+nx*4} ${C[1]-dy/norm*8+ny*4}L${C[0]} ${C[1]}L${C[0]-dx/norm*8-nx*4} ${C[1]-dy/norm*8-ny*4} M${D[0]+dx/norm*8+nx*4} ${D[1]+dy/norm*8+ny*4}L${D[0]} ${D[1]}L${D[0]+dx/norm*8-nx*4} ${D[1]+dy/norm*8-ny*4}"/></g><g transform="translate(${mid[0]} ${mid[1]}) rotate(${angle})"><rect x="-57" y="-22" width="114" height="20" rx="3" fill="white"/><text x="0" y="-7" text-anchor="middle" font-family="Arial" font-size="17" font-weight="bold" fill="#93430c">${label}</text></g>`;
+  const allY=[...all.map(p=>xy(p)[1]),C[1]+25,D[1]+25];
+  const minViewY=Math.min(0,...allY)-8,maxViewY=Math.max(330,...allY)+8;
+  return `<svg viewBox="0 ${minViewY} 560 ${maxViewY-minViewY}" xmlns="http://www.w3.org/2000/svg">${parts}${isoDim}<polyline points="${capA}" fill="none" stroke="#596572" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/><polyline points="${capB}" fill="none" stroke="#596572" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+
+}
+function clipPolygonToBox(poly,w,h){
+ // Corta as partes dos recortes que ultrapassam a chapa.
+ for(const [axis,bound,keepGreater] of [[0,0,true],[0,w,false],[1,0,true],[1,h,false]]){
+  if(!poly.length)break;
+  let output=[];
+  const inside=p=>keepGreater?p[axis]>=bound-1e-8:p[axis]<=bound+1e-8;
+  for(let i=0;i<poly.length;i++){
+   let a=poly[i],b=poly[(i+1)%poly.length],ia=inside(a),ib=inside(b);
+   if(ia!==ib){let v=(bound-a[axis])/(b[axis]-a[axis]);output.push([a[0]+v*(b[0]-a[0]),a[1]+v*(b[1]-a[1])]);}
+   if(ib)output.push(b);
+  }
+  poly=output;
+ }
+ return poly;
+}
+function clipConvex(subject,clip){
+ // Convex clipping, clip contour may have either orientation.
+ if(!subject.length||clip.length<3)return [];
+ const signed=clip.reduce((a,p,i)=>{let q=clip[(i+1)%clip.length];return a+p[0]*q[1]-q[0]*p[1]},0),sg=signed>=0?1:-1;
+ let out=subject;
+ for(let i=0;i<clip.length;i++){
+  const a=clip[i],b=clip[(i+1)%clip.length];let input=out;out=[];
+  const cross=p=>sg*((b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0]));
+  for(let j=0;j<input.length;j++){
+   const p=input[j],q=input[(j+1)%input.length],u=cross(p),v=cross(q);
+   if((u>=-1e-7)!==(v>=-1e-7)){
+    let t=u/(u-v);out.push([p[0]+t*(q[0]-p[0]),p[1]+t*(q[1]-p[1])]);
+   }
+   if(v>=-1e-7)out.push(q);
+  }
+  if(!out.length)break;
+ }
+ return out;
+}
+function plateBoundary(w,h){
+ if(mode===1||mode===2)return Array.from({length:192},(_,i)=>[w/2+w/2*Math.cos(i*2*Math.PI/192),h/2+h/2*Math.sin(i*2*Math.PI/192)]);
+ if(mode===3)return [[0,0],[w,0],[w/2,h]];
+ return [[0,0],[w,0],[w,h],[0,h]];
+}
+function flatIso(g,t){let {w,h,outline,circles,rects}=g;let ring=([x,y,r])=>Array.from({length:96},(_,i)=>[x+r*Math.cos(i*Math.PI/48),y+r*Math.sin(i*Math.PI/48)]);let outer=outline.length?outline:ring(circles[0]),inner=circles.slice(outline.length?0:1).map(ring).concat(rects);inner=inner.map(p=>clipConvex(p,outer)).filter(p=>p.length>=3);let project=([x,y],z)=>[.866*(x-y),.5*(x+y)-z];let all=outer.flatMap(p=>[project(p,0),project(p,t)]),xs=all.map(p=>p[0]),ys=all.map(p=>p[1]),cx=(Math.min(...xs)+Math.max(...xs))/2,cy=(Math.min(...ys)+Math.max(...ys))/2,sc=Math.min(480/(Math.max(...xs)-Math.min(...xs)||1),220/(Math.max(...ys)-Math.min(...ys)||1));let pt=(p,z)=>{let [x,y]=project(p,z);return `${280+(x-cx)*sc},${140+(y-cy)*sc}`};let path=(p,z)=>'M'+p.map(q=>pt(q,z)).join('L')+'Z';let a=`<path d="${[outer,...inner].map(p=>path(p,0)).join(' ')}" fill="#b9b9b9" fill-rule="evenodd" stroke="none"/>`;outer.forEach((p,i)=>{let q=outer[(i+1)%outer.length];if(project(q,0)[0]<project(p,0)[0])a+=`<polygon points="${[pt(p,0),pt(q,0),pt(q,t),pt(p,t)].join(' ')}" fill="#bbb" stroke="none"/>`});a+=`<path d="${[outer,...inner].map(p=>path(p,t)).join(' ')}" fill="#ededed" fill-rule="evenodd" stroke="#222" stroke-width="1.3" stroke-linejoin="round"/>`;let defs=inner.map((p,i)=>`<clipPath id="ap${i}"><path d="${path(p,t)}"/></clipPath>`).join('');let mask=`<defs>${defs}<mask id="openings" maskUnits="userSpaceOnUse" x="0" y="0" width="560" height="280"><rect width="560" height="280" fill="white"/>${inner.map((p,i)=>`<path d="${path(p,0)}" fill="black" clip-path="url(#ap${i})"/>`).join('')}</mask></defs>`;return `<svg viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg">${mask}<g mask="url(#openings)">${a}</g></svg><p style="font-size:10px">Perspectiva esquemática: recortes limitados ao contorno da chapa. Confira o DXF no CAD antes do corte.</p>`}
+function centerCut(){let w=(mode===1||mode===2)?N('od'):(mode===0||mode===3)?N('w'):(geom?geom.w:0),h=(mode===1||mode===2)?N('od'):(mode===0||mode===3)?N('h'):(geom?geom.h:0);$('hx').value=fmt(w/2);$('hy').value=fmt(h/2);$('holeStatus').textContent='Centro: X '+fmt(w/2)+' / Y '+fmt(h/2)}function previewPrint(){if(!draw())return;$('previewSheet').innerHTML=$('paper').innerHTML;$('printPreview').showModal()}function setThickness(v){$('thick').value=v;$('inchStatus').textContent='';draw()}function applyInch(){let raw=$('inchEntry').value.trim().replace(',','.');let parts=raw.split('/');let v=parts.length===2?Number(parts[0])/Number(parts[1]):Number(raw);if(!Number.isFinite(v)||v<=0){$('inchStatus').textContent=' Informe uma espessura válida.';return}setThickness(Number((v*25.4).toFixed(6)));$('inchStatus').textContent=' Convertido para mm.'}function thicknessView(t){return `<div><h3>Vista lateral — espessura</h3><svg viewBox="0 0 300 65" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="20" width="180" height="16" fill="#eee" stroke="#222"/><path d="M214 20H265 M214 36H265 M250 20V36" fill="none" stroke="#333"/><text x="255" y="13" font-size="12" text-anchor="middle">${fmt(t)} mm</text></svg><small>Vista esquemática, sem escala.</small></div>`}function draw(){quick();try{let t=N('thick');if(!(t>0))throw Error('Espessura inválida');let w,h,outline=[],circles=[],bends=[],profile=[],rows=[];if(mode===0||mode===3){w=N('w');h=N('h');outline=mode===0?[[0,0],[w,0],[w,h],[0,h]]:[[0,0],[w,0],[w/2,h]]}else if(mode<3){w=h=N('od');circles.push([w/2,h/2,w/2]);if(mode===2){let di=N('idiam'),p=N('pcd'),n=N('count'),b=N('bolt');if(!(di>0&&di<w&&b>0&&p-b>di&&p+b<w&&Number.isInteger(n)&&n>=1&&n<=100&& (n===1||p*Math.sin(Math.PI/n)>b)))throw Error('Confira os diâmetros e a separação dos furos');circles.push([w/2,h/2,di/2]);for(let i=0;i<n;i++)circles.push([w/2+p/2*Math.cos(i*2*Math.PI/n),h/2+p/2*Math.sin(i*2*Math.PI/n),b/2]);rows.push(['Furação',`${n} × Ø${b}; círculo Ø${p}; interno Ø${di}`])}}else{readLegs();let r=N('radius'),k=N('k');h=N('length');if(!(r>0&&k>=0&&k<=1&&legs.every(x=>x>0)&&angles.every(a=>Number.isFinite(a)&&Math.abs(a)>0&&Math.abs(a)<180)))throw Error('Confira raio, fator K, trechos e ângulos (0 < |giro| < 180°)');let ba=angles.map(a=>Math.abs(a)*Math.PI/180*(r+k*t)),
+sb=angles.map(a=>(r+t)*Math.tan(Math.abs(a)*Math.PI/360)),
+si=angles.map(a=>r*Math.tan(Math.abs(a)*Math.PI/360)),
+straight=legs.map((l,i)=>{let reference=legRefs[i];let cuts=reference==='outside'?sb:reference==='inside'?si:angles.map(()=>0);return l-((cuts[i-1]||0)+(cuts[i]||0))});if(straight.some(x=>x<=0))throw Error('Trecho insuficiente para o raio informado');w=0;let x=0,y=0,dir=0;profile=[[x,y]];straight.forEach((s,i)=>{w+=s;x+=s*Math.cos(dir);y+=s*Math.sin(dir);profile.push([x,y]);if(i<ba.length){bends.push(w+ba[i]/2);rows.push([`D${i+1} — ${fmt(Math.abs(angles[i]))}°${angles[i]<0?' (inversa)':''}`,`Marcar dobra a ${fmt(w+ba[i]/2)} mm da borda inicial`]);w+=ba[i];let a=angles[i]*Math.PI/180,rr=r+k*t,sg=Math.sign(a),cx=x-sg*rr*Math.sin(dir),cy=y+sg*rr*Math.cos(dir);for(let j=1;j<=24;j++){let d=dir+a*j/24;x=cx+sg*rr*Math.sin(d);y=cy-sg*rr*Math.cos(d);profile.push([x,y])}dir+=a}});outline=[[0,0],[w,0],[w,h],[0,h]];rows.unshift(['TIPO DE MEDIDA','INDIVIDUAL POR LADO'],['Medidas acabadas informadas',legs.map((v,i)=>`L${i+1}: ${fmt(v)} mm (${legRefs[i]==='inside'?'INTERNA':legRefs[i]==='outside'?'EXTERNA':'TANGÊNCIA'})`).join(' | ')],['CHAPA ABERTA (estimativa, NÃO liberar corte)',`${fmt(w)} × ${fmt(h)} mm`],['Cálculo avançado (somente estimativa)',`Raio ${fmt(r)} mm / K ${fmt(k)}`],['Espessura',`${fmt(t)} mm`]);}if(!(w>0&&h>0&&Number.isFinite(w+h)))throw Error('Dimensões inválidas');let rects=[];for(let q of holes){if(!(q.d>0&&q.h>=0))throw Error('Dimensões do recorte inválidas');
+let isNotch=q.h>0&&mode===0;if(mode===0&&q.h>0){let lim=cutLimits(q.x,q.y);if(q.d>lim.maxW+1e-8||q.h>lim.maxH+1e-8)throw Error('Rasgo R'+(holes.indexOf(q)+1)+' excede o limite da chapa após alterar medidas. Exclua e adicione novamente com os novos limites.');}
+if(isNotch){
+ if(!notchIntersects(q,w,h,mode))throw Error('Rasgo não alcança a chapa. Ajuste X/Y ou tamanho.');
+}else if(q.x-q.d/2<0||q.x+q.d/2>w||q.y-(q.h||q.d)/2<0||q.y+(q.h||q.d)/2>h)throw Error('Furo ou rasgo fora dos limites');if(mode===1||mode===2){let dist=Math.hypot(q.x-w/2,q.y-h/2);if(!q.h&&(dist+q.d/2>w/2+1e-5||mode===2&&dist-q.d/2<N('idiam')/2-1e-5))throw Error('Furo fora da área útil circular');if(q.h){let pts=q.slot?slotPoints(q):[[q.x-q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y+q.h/2],[q.x-q.d/2,q.y+q.h/2]];if(!pts.every(([px,py])=>{let r=Math.hypot(px-w/2,py-h/2);return r<=w/2+1e-5&&(mode!==2||r>=N('idiam')/2-1e-5)}))throw Error('Rasgo ultrapassa a área circular. Reduza ou reposicione.')}}if(mode===3&&!q.edge){let vertices= q.h? (q.slot?slotPoints(q):[[q.x-q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y+q.h/2],[q.x-q.d/2,q.y+q.h/2]]):Array.from({length:96},(_,i)=>[q.x+q.d/2*Math.cos(i*2*Math.PI/96),q.y+q.d/2*Math.sin(i*2*Math.PI/96)]);if(!vertices.every(([px,py])=>py>=0&&py<=h&&px>=w/2*py/h&&px<=w-w/2*py/h))throw Error('Furo ou rasgo ultrapassa a borda do triângulo. Reduza ou reposicione o recorte.');}if(q.slot){let r=Math.min(q.d,q.h)/2;if(!(r>0))throw Error("Dimensão do rasgo inválida");let a=[];for(let j=0;j<64;j++){let z=2*Math.PI*j/64;a.push([q.x+r*Math.cos(z)+Math.sign(Math.cos(z))*(q.d/2-r),q.y+r*Math.sin(z)+Math.sign(Math.sin(z))*(q.h/2-r)])}rects.push(a)}else if(q.h)rects.push([[q.x-q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y-q.h/2],[q.x+q.d/2,q.y+q.h/2],[q.x-q.d/2,q.y+q.h/2]]);else circles.push([q.x,q.y,q.d/2]);rows.push([`R${holes.indexOf(q)+1} — ${q.slot?'Rasgo oblongo':q.h?'Rasgo retangular':'Furo circular'}`,`Centro: X=${fmt(q.x)} mm; Y=${fmt(q.y)} mm; ${q.h?'largura='+fmt(q.d)+' mm; altura='+fmt(q.h)+' mm':'diâmetro=Ø'+fmt(q.d)+' mm'}${q.edge?' (aberto na borda '+q.edge+'; profundidade '+fmt(q.depth)+' mm)':''}${isNotch&&!q.edge?' (limitado à borda)':''}`])}geom={w,h,outline,circles,rects,bends};let s=Math.min(420/w,260/h),X=x=>65+x*s,Y=y=>300-y*s,poly=(p,close=true)=>`<polyline points="${(close?[...p,p[0]]:p).map(([x,y])=>X(x)+','+Y(y)).join(' ')}" fill="none" stroke="#111" stroke-width="1.5"/>`;let svg=`<svg viewBox="0 0 560 350" xmlns="http://www.w3.org/2000/svg">${outline.length?poly(outline):''}${rects.map(p=>poly(clipConvex(p,plateBoundary(w,h)))).join('')}${circles.map(([x,y,r])=>`<circle cx="${X(x)}" cy="${Y(y)}" r="${r*s}" fill="none" stroke="#111" stroke-width="1.5"/>`).join('')}<g stroke="#b86d20" fill="#b86d20" stroke-width="1"><path d="M65 300 H${X(w)+12}"/><path d="M${X(w)+12} 300 l-7 -4 v8Z" stroke="none"/><path d="M65 300 V${Y(h)-12}"/><path d="M65 ${Y(h)-12} l-4 7 h8Z" stroke="none"/></g><g fill="#9c510a" font-size="12" font-weight="bold"><text x="${X(w)+16}" y="304">X</text><text x="61" y="${Y(h)-17}">Y</text><text x="48" y="316" font-size="10">0,0</text></g>${bends.map((b,i)=>`<path d="M${X(b)} ${Y(0)}V${Y(h)}" stroke="#65727d" stroke-dasharray="5 4"/><circle cx="${X(b)}" cy="${Y(h)-13-(i%2)*18}" r="10" fill="white" stroke="#65727d" stroke-width="1"/><text x="${X(b)}" y="${Y(h)-9-(i%2)*18}" font-size="10" fill="#34404a" text-anchor="middle">${i+1}</text>`).join('')}<g stroke="#555" fill="none"><path d="M65 305V330 M${X(w)} 305V330 M65 324H${X(w)} M60 300H30 M60 ${Y(h)}H30 M36 300V${Y(h)}"/></g><g font-size="12" fill="#111"><text x="${X(w/2)}" y="320" text-anchor="middle">${fmt(w)}</text><text x="25" y="${Y(h/2)}" text-anchor="middle" transform="rotate(-90 25 ${Y(h/2)})">${fmt(h)}</text><text x="${X(w/2)}" y="342" font-size="10" fill="#1c5180" text-anchor="middle">${mode>=4?'CHAPA ABERTA — ESTIMATIVA':'MEDIDA TOTAL EXTERNA'}</text><text x="14" y="${Y(h/2)}" font-size="9" fill="#1c5180" text-anchor="middle" transform="rotate(-90 14 ${Y(h/2)})">${mode>=4?'ESTIM.':'EXTERNA'}</text></g></svg>`;// Cotas de fabricação separadas, com identificação, tamanho e posição.
+const rowHeight=54;
+const svgHeight=Math.max(350,40+holes.length*rowHeight);
+svg=svg.replace('viewBox="0 0 560 350"',`viewBox="0 0 960 ${svgHeight}"`);
+const rightX=590;
+let cutDims=holes.map((q,i)=>{
+ const cx=X(q.x),cy=Y(q.y),yy=30+i*rowHeight;
+ const c='#1769aa';
+ const name=q.slot?'RASGO OBLONGO':q.h?'RASGO RETANGULAR':'FURO CIRCULAR';
+ const size=q.edge?`Abertura ${fmt(q.opening)} mm · Profundidade ${fmt(q.depth)} mm` :q.h?`Largura ${fmt(q.d)} mm · Altura ${fmt(q.h)} mm`:`Diâmetro Ø${fmt(q.d)} mm`;
+ return `<g stroke="${c}" stroke-width="0.85" fill="none" opacity=".9"><path d="M${cx} ${cy}L${rightX-22} ${yy+16}H${rightX-7}"/><path d="M${cx-5} ${cy}h10 M${cx} ${cy-5}v10"/></g><g fill="${c}" font-family="Arial,sans-serif"><text x="${rightX}" y="${yy+8}" font-size="13" font-weight="bold">R${i+1} — ${name}</text><text x="${rightX}" y="${yy+26}" font-size="12">${size}</text><text x="${rightX}" y="${yy+42}" font-size="12">${q.edge?'Borda: '+q.edge+' | ':''}Centro: X = ${fmt(q.x)} mm | Y = ${fmt(q.y)} mm</text></g><path d="M${rightX} ${yy+47}H940" stroke="#d7e0e8" stroke-width=".7"/>`;
+}).join('');
+svg=svg.replace('</svg>',cutDims+'</svg>');
+let pv='';if(profile.length){let xs=profile.map(p=>p[0]),ys=profile.map(p=>p[1]),minx=Math.min(...xs),miny=Math.min(...ys),sc=Math.min(440/(Math.max(...xs)-minx||1),150/(Math.max(...ys)-miny||1));let markers='',locs=[[0,0]],direction=0;
+for(let i=0;i<legs.length;i++){let last=locs[locs.length-1];locs.push([last[0]+legs[i]*Math.cos(direction),last[1]+legs[i]*Math.sin(direction)]);if(i<angles.length)direction+=angles[i]*Math.PI/180;}
+let lx=locs.map(v=>v[0]),ly=locs.map(v=>v[1]),lminx=Math.min(...lx),lmaxx=Math.max(...lx),lminy=Math.min(...ly),lmaxy=Math.max(...ly),lsc=Math.min(405/(lmaxx-lminx||1),125/(lmaxy-lminy||1));
+let colorRef={inside:'#1769aa',outside:'#b45309',tangent:'#5b6470'};
+for(let i=0;i<legs.length;i++){let a=locs[i],b=locs[i+1],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,dx=b[0]-a[0],dy=b[1]-a[1],len=Math.hypot(dx,dy)||1,nx=-dy/len,ny=dx/len;
+if(nx*(mx-(lminx+lmaxx)/2)+ny*(my-(lminy+lmaxy)/2)<0){nx=-nx;ny=-ny}if(dimSides[i]==='inside'||(!dimSides[i]||dimSides[i]==='auto')&&legRefs[i]==='inside'){nx=-nx;ny=-ny}
+let x=75+(mx-lminx)*lsc+nx*18,y=155-(my-lminy)*lsc-ny*18,color=colorRef[legRefs[i]]||colorRef.outside;
+markers+=`<circle cx="${x}" cy="${y}" r="13" fill="white" stroke="${color}" stroke-width="2"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" font-weight="bold" fill="${color}">L${i+1}</text>`;}
+pv=`<h3>Referência dos lados</h3><p style="font-size:11px">L1, L2... = cotas da peça acabada.</p><svg viewBox="0 0 560 190"><polyline points="${locs.map(([x,y])=>`${75+(x-lminx)*lsc},${155-(y-lminy)*lsc}`).join(' ')}" fill="none" stroke="#333" stroke-width="3" stroke-linejoin="round"/>${markers}</svg><p>Trechos informados: ${legs.map((v,i)=>`L${i+1} ${fmt(v)}`).join(' / ')} mm</p>`} let reference=mode>=4?'mixed':'outside';
+let refLabel=reference==='mixed'?'POR LADO — VER COTAS INTERNA / EXTERNA NO DESENHO':reference==='inside'?'INTERNA — VÃO LIVRE DA PEÇA ACABADA':'EXTERNA — MEDIDA TOTAL DA PEÇA ACABADA';
+let finishedDims=mode>=4?`<div class="dim-note"><b>MEDIDAS DA PEÇA ACABADA: ${refLabel}</b><p>Medidas informadas: ${legs.map((v,i)=>`L${i+1}: ${fmt(v)} mm (${legRefs[i]==='inside'?'INTERNA':legRefs[i]==='outside'?'EXTERNA':'TANGÊNCIA'})`).join(' | ')}. As cotas acabadas são medidas até a interseção virtual das faces retas; não são as dimensões da chapa aberta.</p></div>`:'<div class="dim-note"><b>Cotas do contorno: EXTERNAS</b> — dimensões totais da peça plana.</div>';
+let cutLabel=mode>=4?'Chapa aberta — desenvolvimento ESTIMADO':'Vista principal — cotas externas';
+let mainDrawing=profile.length?`<div class="finished-full">${dimensionedProfile()}</div><div class="views profile-views"><div class="cutview"><h3>${cutLabel}</h3>${svg.replace(/viewBox="[^"]+"/,`viewBox="12 ${Math.max(0,Y(h)-22)} ${Math.max(90,X(w)+34-12)} ${350-Math.max(0,Y(h)-22)}"`)}${mode>=4?`<p class="bend-key">${angles.map((a,i)=>`<span><b>${i+1}</b> D${i+1}: ${fmt(a)}°</span>`).join('')}</p>`:''}</div><div class="iso-print-view"><h3>Vista isométrica</h3>${isoView(profile,h,holes,w,bends)}</div></div>`:`<div class="views"><div><h3>${cutLabel}</h3>${svg}${mode>=4?`<p class="bend-key">${angles.map((a,i)=>`<span><b>${i+1}</b> D${i+1}: ${fmt(a)}°</span>`).join('')}</p>`:''}</div><div><h3>Vista isométrica</h3>${flatIso(geom,t)}</div><div class="flat-thickness">${thicknessView(t)}</div></div>`;
+let header=`<div class="sheethead"><div class="sheet-title"><div><h2>${esc(models[mode][0])} — ${esc($('ref').value)}</h2><p>${esc($('client').value)} | ${esc($('mat').value)} | esp. ${fmt(t)} mm</p></div><div class="qty-stamp"><span>QUANTIDADE</span><strong>${esc($('qty').value)} <small>PEÇAS</small></strong></div></div></div>`;
+$('paper').innerHTML=`<article class="print-page single-sheet ${mode<4?'flat-sheet':'bent-sheet'}">${header}<div class="print-drawing"><h3>DESENHO E COTAS</h3>${mainDrawing}</div><div class="print-specs"><div class="specs-title"><b>ESPECIFICAÇÕES</b><span>Medidas em mm · ${mode>=4?'Desenvolvimento estimado':'Peça acabada'}</span></div><div class="specs-meta"><span><b>Referência:</b> ${refLabel}</span><span><b>Dimensões:</b> ${fmt(w)} × ${fmt(h)} mm</span></div><table><thead><tr><th>Descrição</th><th>Medida / observação</th></tr></thead><tbody>${rows.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td></tr>`).join('')}</tbody></table><p class="print-note">${mode>=4?'Chapa aberta estimada: confirmar desenvolvimento e compensação de dobras antes do corte.':'Conferir todas as cotas antes da fabricação.'}</p></div></article>`;$('holeMap').innerHTML=svg;let map=$('holeMap').querySelector('svg');map.style.cssText='width:100%;background:white;border-radius:8px;cursor:crosshair';map.onclick=e=>{let pt=map.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;pt=pt.matrixTransform(map.getScreenCTM().inverse());if(pt.x<65||pt.x>X(w)||pt.y>300||pt.y<Y(h))return;$('hx').value=Math.round((pt.x-65)/s*10)/10;$('hy').value=Math.round((300-pt.y)/s*10)/10;};$('holeList').innerHTML=holes.map((q,i)=>`<p><b>R${i+1} · ${q.slot?'Rasgo oblongo':q.h?'Rasgo retangular':'Furo'}</b> — Centro X ${fmt(q.x)} / Y ${fmt(q.y)} mm · ${q.edge?'Abertura '+fmt(q.opening)+' × profundidade '+fmt(q.depth):q.h?'L '+fmt(q.d)+' × A '+fmt(q.h):'Ø '+fmt(q.d)} mm <button onclick="removeHole(${i})">Excluir</button></p>`).join('');$('error').textContent='';return true}catch(e){geom=null;$('paper').innerHTML='';$('error').textContent=e.message;return false}}
+function download(name,data,type){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([data],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function dxf(){if(!draw())return;let a=[];const put=(...x)=>a.push(...x),line=(p,q,layer)=>put(0,'LINE',8,layer,10,p[0],20,p[1],30,0,11,q[0],21,q[1],31,0),poly=p=>p.forEach((v,i)=>line(v,p[(i+1)%p.length],'CUT'));put(0,'SECTION',2,'HEADER',9,'$ACADVER',1,'AC1015',9,'$INSUNITS',70,4,0,'ENDSEC',0,'SECTION',2,'TABLES',0,'TABLE',2,'LAYER',70,2,0,'LAYER',2,'CUT',70,0,62,7,6,'CONTINUOUS',0,'LAYER',2,'BEND',70,0,62,1,6,'CONTINUOUS',0,'ENDTAB',0,'ENDSEC',0,'SECTION',2,'ENTITIES');if(geom.outline.length)poly(geom.outline);geom.rects.forEach(poly);geom.circles.forEach(([x,y,r])=>put(0,'CIRCLE',8,'CUT',10,x,20,y,30,0,40,r));geom.bends.forEach(x=>line([x,0],[x,geom.h],'BEND'));put(0,'ENDSEC',0,'EOF');download('peca.dxf',a.join('\n')+'\n','application/dxf')}
+function save(){if(!draw())return;let values={};document.querySelectorAll('input:not([type=file]),select').forEach(e=>values[e.id]=e.value);download('projeto.json',JSON.stringify({version:44,mode,holes,legs,angles,legRefs,dimSides,values}),'application/json')} $('load').onchange=async e=>{try{let p=JSON.parse(await e.target.files[0].text());choose(!p.version&&p.mode>=9?p.mode-1:p.mode);holes=p.holes;legs=p.legs;angles=p.angles;legRefs=Array.isArray(p.legRefs)&&p.legRefs.length===legs.length?p.legRefs:legs.map(()=>p.values?.basis||'outside');dimSides=legs.map(()=> 'auto');if(mode>=4)renderLegs();Object.entries(p.values).forEach(([id,v])=>{if($(id)&&!/^ref\d+$/.test(id))$(id).value=v});draw()}catch(e){$('error').textContent='Projeto inválido'}};document.addEventListener('input',e=>{if(e.target.type!=='file'&&e.target.id!=='editValue')draw()});choose(0);if('serviceWorker' in navigator && (location.protocol==='https:' || location.hostname==='localhost')) navigator.serviceWorker.register('/sw.js', {scope:'/'}).catch(e=>console.warn('Falha no service worker:',e));</script><script>
+(function(){
+ const btn=document.getElementById('pwa-install-button');
+ const info=document.getElementById('pwa-install-info');
+ let pending=null;
+ function standalone(){return window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true}
+ if(standalone()){info.textContent='Aplicativo instalado e aberto em modo independente.';return}
+ if(location.protocol!=='https:'&&location.hostname!=='localhost'){
+   info.textContent='Para instalar, publique este ZIP no Netlify e abra o endereço HTTPS no Chrome.';
+ }
+ window.addEventListener('beforeinstallprompt',function(e){
+   e.preventDefault();pending=e;btn.style.display='block';
+   info.textContent='Aplicativo pronto para instalar. Toque no botão acima.';
+ });
+ btn.addEventListener('click',async function(){
+   if(!pending)return;
+   const prompt=pending;pending=null;btn.style.display='none';
+   try{await prompt.prompt();const choice=await prompt.userChoice;
+     info.textContent=choice.outcome==='accepted'?'Instalação solicitada. Confira a tela inicial do celular.':'Instalação cancelada. Você pode tentar pelo menu ⋮ do Chrome.';
+   }catch(err){info.textContent='Não foi possível abrir a instalação. Use o menu ⋮ do Chrome → Adicionar à tela inicial.'}
+ });
+ window.addEventListener('appinstalled',function(){btn.style.display='none';info.textContent='Aplicativo instalado com sucesso.'});
+})();
+</script></body></html>
